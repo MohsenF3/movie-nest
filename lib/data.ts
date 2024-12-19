@@ -1,6 +1,6 @@
 "use server";
 
-import { Movie, MovieListType } from "@/types/movie";
+import { Cast, Movie, MovieListType } from "@/types/movie";
 import { base_url, key } from "./consts";
 
 export const getAllMoviesByCategory = async (target: MovieListType) => {
@@ -38,6 +38,33 @@ export const getMovieById = async (id: number) => {
       type: "success",
       status: 200,
       movie: movie as Movie,
+    };
+  } catch (error) {
+    return {
+      type: "error",
+      status: 500,
+      message: "Failed to fetch movie",
+    };
+  }
+};
+
+export const getCastById = async (id: number) => {
+  try {
+    const response = await fetch(`${base_url}/person/${id}?api_key=${key}`);
+    const cast = await response.json();
+
+    if (cast.success == false) {
+      return {
+        type: "error",
+        status: 404,
+        message: "Cast not found",
+      };
+    }
+
+    return {
+      type: "success",
+      status: 200,
+      cast: cast as Cast,
     };
   } catch (error) {
     return {

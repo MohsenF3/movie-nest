@@ -25,7 +25,7 @@ export const Card = React.memo(
     const hasImage = card.imagePath !== null;
     return (
       <Link
-        href={`/person/${card.id}`}
+        href={`/cast/${card.id}`}
         onMouseEnter={() => setHovered(index)}
         onMouseLeave={() => setHovered(null)}
         className={cn(
