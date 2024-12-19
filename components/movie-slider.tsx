@@ -16,9 +16,10 @@ interface MovieSliderProps {
 const ITEM_COUNT = 10;
 
 export default async function MovieSlider({ target }: MovieSliderProps) {
-  const { type, message, movies } = await getAllMoviesByCategory(target);
+  const { type, message, movies, status } =
+    await getAllMoviesByCategory(target);
 
-  if (type === "error" && !movies) {
+  if (type === "error" && status === 500 && !movies) {
     return <p className="text-destructive">{message}</p>;
   }
 

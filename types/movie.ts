@@ -80,7 +80,7 @@ type Credits = {
   cast: CastMember[];
 };
 
-type CastMember = {
+export type CastMember = {
   adult: boolean;
   gender: number | null;
   id: number;
