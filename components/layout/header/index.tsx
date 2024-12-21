@@ -17,8 +17,8 @@ export default function Header() {
         <div className="hidden flex-1 md:block">
           <Navbar />
         </div>
-        <div className="flex items-center gap-2">
-          <div className="hidden sm:block">
+        <div className="flex items-center gap-2 md:flex-[0.5]">
+          <div className="hidden w-full sm:block">
             <SearchBox />
           </div>
           <ThemeToggle />
