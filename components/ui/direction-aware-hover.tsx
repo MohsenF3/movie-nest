@@ -23,8 +23,6 @@ export const DirectionAwareHover = ({
 }: DirectionAwareHoverProps) => {
   const ref = useRef<HTMLDivElement>(null);
 
-  console.log(image.url);
-
   const [direction, setDirection] = useState<
     "top" | "bottom" | "left" | "right" | string
   >("left");
