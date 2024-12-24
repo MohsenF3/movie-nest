@@ -19,7 +19,7 @@ export default function Navbar() {
     <NavigationMenu>
       <NavigationMenuList>
         <NavigationMenuItem>
-          <Link href="/movie" legacyBehavior passHref>
+          <Link href="/movies" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
               Movies
             </NavigationMenuLink>

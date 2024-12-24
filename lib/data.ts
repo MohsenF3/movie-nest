@@ -74,3 +74,25 @@ export const getCastById = async (id: number) => {
     };
   }
 };
+
+export const getAllMovies = async ({ page = 1 }: { page?: number }) => {
+  try {
+    const response = await fetch(
+      `${base_url}/discover/movie?api_key=${key}&page=${page}`,
+    );
+    const data = await response.json();
+    const movies: Movie[] = data.results;
+
+    return {
+      type: "success",
+      status: 200,
+      movies,
+    };
+  } catch (error) {
+    return {
+      type: "error",
+      status: 500,
+      message: "Failed to fetch movies",
+    };
+  }
+};
