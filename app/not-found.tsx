@@ -6,7 +6,7 @@ import NotFoundImage from "../public/not-found.webp";
 
 export default function NotFound() {
   return (
-    <div className="flex h-full min-h-[85dvh] w-full flex-col items-center justify-center gap-5">
+    <div className="flex h-full min-h-[calc(100vh-11.5rem)] w-full flex-col items-center justify-center gap-5">
       <Image
         src={NotFoundImage}
         alt="not-found image"

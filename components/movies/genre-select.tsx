@@ -22,6 +22,7 @@ import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { Check, ChevronsUpDown } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import React from "react";
+import { v4 as uuid } from "uuid";
 
 type Genre = {
   href: string;
@@ -110,7 +111,7 @@ function GenreList({
         <CommandGroup>
           {allGenres.map((genre) => (
             <CommandItem
-              key={genre.id}
+              key={uuid()}
               value={genre.title}
               onSelect={() => handleSelect(genre.id)}
               className="cursor-pointer"

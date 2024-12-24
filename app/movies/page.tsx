@@ -23,25 +23,25 @@ export default async function MoviesPage(props: {
 
   // show message if request failed
   if (type === "error" && status === 500) {
-    return <Error message={message} className="min-h-[85dvh]" />;
+    return <Error message={message} />;
   }
 
   if (!movies?.length) {
     return (
-      <div className="flex min-h-[85dvh] items-center justify-center">
+      <div className="flex min-h-[calc(100vh-11.5rem)] items-center justify-center">
         <p>No movies found.</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-[85dvh]">
+    <div className="min-h-[calc(100vh-11.5rem)]">
       <GenreSelect className="flex md:hidden" />
 
       <ul
         key={search || "" + genreId + Date.now()}
         role="list"
-        className="xs:grid-cols-2 my-6 grid grid-cols-1 gap-8 sm:gap-x-6 md:grid-cols-3 lg:grid-cols-4"
+        className="my-6 grid grid-cols-1 gap-8 xs:grid-cols-2 sm:gap-x-6 md:grid-cols-3 lg:grid-cols-4"
       >
         <InfiniteScrollMovies
           search={search}

@@ -2,6 +2,7 @@ import { convertMinutesToHours } from "@/lib/utils";
 import { Movie } from "@/types/movie";
 import { Calendar, Clock, Command } from "lucide-react";
 import React from "react";
+import { v4 as uuid } from "uuid";
 import CircleProgress from "../ui/circle-progressbar";
 
 type MovieDetailsProps = {
@@ -48,7 +49,7 @@ function Genres({ genres }: { genres: Movie["genres"] }) {
       {genres.map((genre) => (
         <div
           className="rounded-full bg-secondary px-5 py-2 text-sm"
-          key={genre.id}
+          key={uuid()}
         >
           {genre.name}
         </div>

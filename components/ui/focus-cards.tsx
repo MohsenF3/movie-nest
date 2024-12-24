@@ -3,6 +3,7 @@
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import React, { useState } from "react";
+import { v4 as uuid } from "uuid";
 
 type Card = {
   id: number;
@@ -63,7 +64,7 @@ export function FocusCards({ cards }: { cards: Card[] }) {
     <div className="grid w-full grid-cols-2 gap-4 md:grid-cols-4">
       {cards.map((card, index) => (
         <Card
-          key={card.id}
+          key={uuid()}
           card={card}
           index={index}
           hovered={hovered}

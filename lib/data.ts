@@ -3,13 +3,20 @@
 import { Cast, Movie, MovieListType } from "@/types/movie";
 import { base_url, key } from "./consts";
 
-export const getAllMoviesByCategory = async (target: MovieListType) => {
+export const getAllMoviesByListType = async (
+  target: MovieListType,
+  page: number = 1,
+) => {
   try {
-    const response = await fetch(`${base_url}/movie/${target}?api_key=${key}`);
+    const response = await fetch(
+      `${base_url}/movie/${target}?api_key=${key}&page=${page}`,
+    );
+
     const data = await response.json();
+    const totalPages: number = data.total_pages;
     const movies: Movie[] = data.results;
 
-    return { type: "success", status: 200, movies };
+    return { type: "success", status: 200, movies, totalPages };
   } catch (error) {
     return {
       type: "error",

@@ -48,7 +48,6 @@ export default function InfiniteScrollMovies({
 
   useEffect(() => {
     if (inView && hasMore) {
-      console.log("In view");
       loadMoreMovies();
     }
   }, [inView, genreId]);

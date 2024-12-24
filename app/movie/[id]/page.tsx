@@ -21,7 +21,7 @@ export default async function MoviePage({ params }: MoviePageProps) {
 
   // show message if request failed
   if (type === "error" && status === 500) {
-    return <Error message={message} className="min-h-[85dvh]" />;
+    return <Error message={message} />;
   }
 
   const trailerVideo = movie.videos?.results.find(

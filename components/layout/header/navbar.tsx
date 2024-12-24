@@ -12,6 +12,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { allGenres } from "@/lib/placeholder";
+import { v4 as uuid } from "uuid";
 import NavbarLinks from "./navbar-links";
 
 export default function Navbar() {
@@ -30,7 +31,7 @@ export default function Navbar() {
           <NavigationMenuContent>
             <NavbarLinks className="grid w-[320px] gap-3 p-4 md:w-[320px] md:grid-cols-2">
               {allGenres.map((genre) => (
-                <NavigationMenuLink key={genre.id} asChild>
+                <NavigationMenuLink key={uuid()} asChild>
                   <NavbarLinks.Link href={genre.href}>
                     {genre.title}
                   </NavbarLinks.Link>

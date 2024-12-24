@@ -21,7 +21,7 @@ export default async function CastPage({ params }: CastPageProps) {
 
   // show message if request failed
   if (type === "error" && status === 500) {
-    return <Error message={message} className="min-h-[85dvh]" />;
+    return <Error message={message} />;
   }
 
   const hasImage = cast.profile_path !== null;
