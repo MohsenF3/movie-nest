@@ -72,6 +72,10 @@
   .gradient-background {
     @apply rounded-lg bg-gradient-to-r from-indigo-500 to-purple-400 shadow-lg;
   }
+
+  .card-section {
+    @apply space-y-5 rounded-lg bg-muted p-5;
+  }
 }
 
 @layer components {
@@ -80,11 +84,11 @@
   }
 
   h2 {
-    @apply text-xl font-bold lg:text-3xl xl:text-4xl;
+    @apply text-2xl font-bold lg:text-3xl xl:text-4xl;
   }
 
   h3 {
-    @apply text-lg font-semibold lg:text-2xl xl:text-3xl;
+    @apply text-xl font-semibold lg:text-2xl xl:text-3xl;
   }
 
   h4 {
