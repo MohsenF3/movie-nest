@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useDebouncedCallback } from "use-debounce";
 
-export function SearchBox() {
+export default function SearchBox() {
   const searchParams = useSearchParams();
   const { replace } = useRouter();
 

@@ -30,9 +30,10 @@ type Genre = {
   title: string;
 };
 
-interface GenreSelectProps extends React.ComponentProps<"div"> {}
-
-export default function GenreSelect({ className, ...props }: GenreSelectProps) {
+export default function GenreSelect({
+  className,
+  ...props
+}: React.ComponentProps<"div">) {
   const searchParams = useSearchParams();
   const defaultGenreId = searchParams.get("genre");
 

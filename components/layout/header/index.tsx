@@ -1,7 +1,8 @@
 import Logo from "@/components/logo";
 import dynamic from "next/dynamic";
+import { Suspense } from "react";
 import { MobileMenuToggle } from "./mobile-menu-toggle";
-import { SearchBox } from "./search-box";
+import SearchBox from "./search-box";
 import { ThemeToggle } from "./theme-toggle";
 
 const Navbar = dynamic(() => import("./navbar"));
@@ -18,16 +19,20 @@ export default function Header() {
           <Navbar />
         </div>
         <div className="flex items-center gap-2 md:flex-[0.5]">
-          <div className="hidden w-full sm:block">
-            <SearchBox />
-          </div>
+          <Suspense>
+            <div className="hidden w-full sm:block">
+              <SearchBox />
+            </div>
+          </Suspense>
           <ThemeToggle />
         </div>
       </nav>
 
-      <div className="container block sm:hidden">
-        <SearchBox />
-      </div>
+      <Suspense>
+        <div className="container block sm:hidden">
+          <SearchBox />
+        </div>
+      </Suspense>
     </header>
   );
 }
