@@ -2,6 +2,7 @@ import Logo from "@/components/logo";
 import dynamic from "next/dynamic";
 import { MobileMenuToggle } from "./mobile-menu-toggle";
 import { SearchBox } from "./search-box";
+import { ThemeToggle } from "./theme-toggle";
 
 const Navbar = dynamic(() => import("./navbar"));
 
@@ -20,6 +21,7 @@ export default function Header() {
           <div className="hidden sm:block">
             <SearchBox />
           </div>
+          <ThemeToggle />
         </div>
       </nav>
 
