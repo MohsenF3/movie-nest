@@ -78,13 +78,15 @@ export const getCastById = async (id: number) => {
 export const getAllMovies = async ({
   page = 1,
   search,
+  genreId = "",
 }: {
   page?: number;
   search?: string | undefined;
+  genreId?: string | undefined;
 }) => {
   const endpoint = search
-    ? `${base_url}/search/movie?api_key=${key}&page=${page}&query=${search}`
-    : `${base_url}/discover/movie?api_key=${key}&page=${page}`;
+    ? `${base_url}/search/movie?api_key=${key}&page=${page}&query=${search}&with_genres=${genreId}`
+    : `${base_url}/discover/movie?api_key=${key}&page=${page}&with_genres=${genreId}`;
 
   try {
     const response = await fetch(endpoint);

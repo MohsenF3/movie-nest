@@ -9,11 +9,13 @@ import MovieCard from "../movie-card";
 
 interface InfiniteScrollMoviesProps {
   search: string | undefined;
+  genreId: string | undefined;
   initialMovies: Movie[] | undefined;
 }
 
 export default function InfiniteScrollMovies({
   search,
+  genreId,
   initialMovies,
 }: InfiniteScrollMoviesProps) {
   const [movies, setMovies] = useState(initialMovies);
@@ -28,6 +30,7 @@ export default function InfiniteScrollMovies({
     const next = page + 1;
     const { movies: fetchedMovies } = await getAllMovies({
       search,
+      genreId,
       page: next,
     });
 
@@ -45,9 +48,10 @@ export default function InfiniteScrollMovies({
 
   useEffect(() => {
     if (inView && hasMore) {
+      console.log("In view");
       loadMoreMovies();
     }
-  }, [inView]);
+  }, [inView, genreId]);
 
   return (
     <>
@@ -60,7 +64,7 @@ export default function InfiniteScrollMovies({
       })}
 
       {/* Conditionally render loader */}
-      {hasMore ? <Loader ref={ref} /> : null}
+      {hasMore ? <Loader loaderRef={ref} /> : null}
     </>
   );
 }

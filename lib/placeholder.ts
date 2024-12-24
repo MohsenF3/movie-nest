@@ -1,6 +1,6 @@
-export const genres = [
+const genres = [
   {
-    id: "all",
+    id: 0,
     title: "All",
   },
   {
@@ -80,3 +80,9 @@ export const genres = [
     title: "Western",
   },
 ];
+
+export const allGenres = genres.map((genre) => ({
+  ...genre,
+  // Add href to each genre
+  href: genre.id === 0 ? "/movies" : `/movies?genre=${genre.id}`,
+}));

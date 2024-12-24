@@ -11,7 +11,7 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { genres } from "@/lib/placeholder";
+import { allGenres } from "@/lib/placeholder";
 import NavbarLinks from "./navbar-links";
 
 export default function Navbar() {
@@ -29,9 +29,11 @@ export default function Navbar() {
           <NavigationMenuTrigger>Genres</NavigationMenuTrigger>
           <NavigationMenuContent>
             <NavbarLinks className="grid w-[320px] gap-3 p-4 md:w-[320px] md:grid-cols-2">
-              {genres.map((genre) => (
+              {allGenres.map((genre) => (
                 <NavigationMenuLink key={genre.id} asChild>
-                  <NavbarLinks.Link>{genre.title}</NavbarLinks.Link>
+                  <NavbarLinks.Link href={genre.href}>
+                    {genre.title}
+                  </NavbarLinks.Link>
                 </NavigationMenuLink>
               ))}
             </NavbarLinks>
