@@ -1,11 +1,9 @@
 import Logo from "@/components/logo";
-import dynamic from "next/dynamic";
 import { Suspense } from "react";
 import { MobileMenuToggle } from "./mobile-menu-toggle";
+import Navbar from "./navbar";
 import SearchBox from "./search-box";
 import { ThemeToggle } from "./theme-toggle";
-
-const Navbar = dynamic(() => import("./navbar"));
 
 export default function Header() {
   return (

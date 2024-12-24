@@ -1,9 +1,7 @@
 import Error from "@/components/error";
+import GenreSelect from "@/components/movies/genre-select";
 import InfiniteScrollMovies from "@/components/movies/infinite-scroll-movies";
 import { getAllMovies } from "@/lib/data";
-import dynamic from "next/dynamic";
-
-const GenreSelect = dynamic(() => import("@/components/movies/genre-select"));
 
 type SearchParams = { [key: string]: string | string[] | undefined };
 
