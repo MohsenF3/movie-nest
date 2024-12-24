@@ -1,3 +1,5 @@
+import MainLayout from "@/components/layout/main-layout";
+import Providers from "@/providers";
 import { merriweather } from "@/public/fonts";
 import type { Metadata } from "next";
 import "../components/styles/globals.css";
@@ -15,7 +17,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${merriweather.className} antialiased`}>
-        {children}
+        <Providers>
+          <MainLayout>{children}</MainLayout>
+        </Providers>
       </body>
     </html>
   );

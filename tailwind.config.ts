@@ -9,9 +9,6 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      screens: {
-        xs: "300px",
-      },
       fontFamily: {
         merriweather: ["var(--font-merriweather)"],
       },
