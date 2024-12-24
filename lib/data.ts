@@ -75,11 +75,19 @@ export const getCastById = async (id: number) => {
   }
 };
 
-export const getAllMovies = async ({ page = 1 }: { page?: number }) => {
+export const getAllMovies = async ({
+  page = 1,
+  search,
+}: {
+  page?: number;
+  search?: string | undefined;
+}) => {
+  const endpoint = search
+    ? `${base_url}/search/movie?api_key=${key}&page=${page}&query=${search}`
+    : `${base_url}/discover/movie?api_key=${key}&page=${page}`;
+
   try {
-    const response = await fetch(
-      `${base_url}/discover/movie?api_key=${key}&page=${page}`,
-    );
+    const response = await fetch(endpoint);
     const data = await response.json();
     const movies: Movie[] = data.results;
 

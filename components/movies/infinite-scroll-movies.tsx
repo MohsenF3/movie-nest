@@ -8,10 +8,12 @@ import Loader from "../loader";
 import MovieCard from "../movie-card";
 
 interface InfiniteScrollMoviesProps {
+  search: string | undefined;
   initialMovies: Movie[] | undefined;
 }
 
 export default function InfiniteScrollMovies({
+  search,
   initialMovies,
 }: InfiniteScrollMoviesProps) {
   const [movies, setMovies] = useState(initialMovies);
@@ -25,6 +27,7 @@ export default function InfiniteScrollMovies({
 
     const next = page + 1;
     const { movies: fetchedMovies } = await getAllMovies({
+      search,
       page: next,
     });
 
@@ -38,7 +41,7 @@ export default function InfiniteScrollMovies({
       // No more movies available
       setHasMore(false);
     }
-  }, [page]);
+  }, [search, page]);
 
   useEffect(() => {
     if (inView && hasMore) {

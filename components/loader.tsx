@@ -4,7 +4,7 @@ interface LoaderProps {
 
 export default function Loader({ ref }: LoaderProps) {
   return (
-    <div ref={ref} className="col-span-full mx-auto my-6">
+    <div ref={ref} className="col-span-full mx-auto">
       <svg
         aria-hidden="true"
         className="h-10 w-10 animate-spin fill-primary text-foreground"
