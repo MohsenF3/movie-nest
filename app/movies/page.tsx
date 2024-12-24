@@ -5,12 +5,12 @@ import dynamic from "next/dynamic";
 
 const GenreSelect = dynamic(() => import("@/components/movies/genre-select"));
 
-type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
+type SearchParams = { [key: string]: string | string[] | undefined };
 
 export default async function MoviesPage(props: {
   searchParams: SearchParams;
 }) {
-  const searchParams = await props.searchParams;
+  const searchParams = props.searchParams;
   const search =
     typeof searchParams.query === "string" ? searchParams.query : undefined;
   const genreId =
@@ -41,7 +41,7 @@ export default async function MoviesPage(props: {
       <ul
         key={search || "" + genreId + Date.now()}
         role="list"
-        className="my-6 grid grid-cols-1 gap-8 xs:grid-cols-2 sm:gap-x-6 md:grid-cols-3 lg:grid-cols-4"
+        className="xs:grid-cols-2 my-6 grid grid-cols-1 gap-8 sm:gap-x-6 md:grid-cols-3 lg:grid-cols-4"
       >
         <InfiniteScrollMovies
           search={search}

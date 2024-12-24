@@ -5,15 +5,15 @@ import { Suspense } from "react";
 import MoviesPageLoadingSkeleton from "../loading";
 
 interface MoviesByListTypeProps {
-  params: Promise<{ listType: MovieListType }>;
-  searchParams?: Promise<{
+  params: { listType: MovieListType };
+  searchParams: {
     page?: string;
-  }>;
+  };
 }
 
 export default async function MoviesByListType(props: MoviesByListTypeProps) {
-  const searchParams = await props.searchParams;
-  const listType = (await props.params).listType;
+  const searchParams = props.searchParams;
+  const listType = props.params.listType;
   const currentPage = Number(searchParams?.page) || 1;
 
   return (

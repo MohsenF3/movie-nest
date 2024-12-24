@@ -7,11 +7,13 @@ import { getMovieById } from "@/lib/data";
 import { notFound } from "next/navigation";
 
 interface MoviePageProps {
-  params: Promise<{ id: number }>;
+  params: {
+    id: number;
+  };
 }
 
 export default async function MoviePage({ params }: MoviePageProps) {
-  const id = (await params).id;
+  const id = params.id;
   const { status, movie, message, type } = await getMovieById(id);
 
   // check if movie exists

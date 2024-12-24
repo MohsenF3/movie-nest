@@ -7,11 +7,13 @@ import { Cake, User } from "lucide-react";
 import { notFound } from "next/navigation";
 
 interface CastPageProps {
-  params: Promise<{ id: number }>;
+  params: {
+    id: number;
+  };
 }
 
 export default async function CastPage({ params }: CastPageProps) {
-  const id = (await params).id;
+  const id = params.id;
   const { status, message, type, cast } = await getCastById(id);
 
   // check if cast exists
