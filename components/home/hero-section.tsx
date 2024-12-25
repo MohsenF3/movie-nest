@@ -1,5 +1,9 @@
+import dynamic from "next/dynamic";
 import { FlipWords } from "../ui/flip-words";
-import { HeroSectionIcon } from "./hero-section-icon";
+
+const HeroSectionIcon = dynamic(() => import("./hero-section-icon"), {
+  ssr: false,
+});
 
 export default function HeroSection() {
   const words = ["Possibilities", "Stories", "Adventures"];

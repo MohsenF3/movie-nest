@@ -2,6 +2,8 @@
 
 import { Player } from "@lottiefiles/react-lottie-player";
 
-export function HeroSectionIcon() {
+const HeroSectionIcon: React.FC = () => {
   return <Player src="/movie.json" loop autoplay />;
-}
+};
+
+export default HeroSectionIcon;
