@@ -6,7 +6,7 @@ import { v4 as uuid } from "uuid";
 
 export const FlipWords = ({
   words,
-  duration = 1000,
+  duration = 2000,
   className,
 }: {
   words: string[];
