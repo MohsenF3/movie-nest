@@ -2,7 +2,6 @@
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import { useCallback, useEffect, useState } from "react";
-import { v4 as uuid } from "uuid";
 
 export const FlipWords = ({
   words,
@@ -62,7 +61,7 @@ export const FlipWords = ({
       >
         {currentWord.split(" ").map((word, wordIndex) => (
           <motion.span
-            key={uuid()}
+            key={word + wordIndex}
             initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{
@@ -73,7 +72,7 @@ export const FlipWords = ({
           >
             {word.split("").map((letter, letterIndex) => (
               <motion.span
-                key={uuid()}
+                key={word + wordIndex}
                 initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 transition={{
