@@ -1,10 +1,12 @@
 import Error from "@/components/error";
-import CastSection from "@/components/movie/cast-section";
 import MovieDetailsSection from "@/components/movie/movie-details-section";
 import MovieTrailerSection from "@/components/movie/movie-trailer-section";
 import { imageURL } from "@/lib/consts";
 import { getMovieById } from "@/lib/data";
+import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
+
+const CastSection = dynamic(() => import("@/components/movie/cast-section"));
 
 interface MoviePageProps {
   params: {

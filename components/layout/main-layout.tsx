@@ -1,7 +1,11 @@
 import Header from "@/components/layout/header";
+import dynamic from "next/dynamic";
 import React from "react";
 import Footer from "./footer";
-import MobileNavbar from "./header/mobile-navbar";
+
+const MobileNavbar = dynamic(() => import("./header/mobile-navbar"), {
+  ssr: false,
+});
 
 export default function MainLayout({
   children,

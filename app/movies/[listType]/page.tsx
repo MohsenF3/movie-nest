@@ -1,8 +1,12 @@
-import MoviesPagination from "@/components/movies/movies-pagination";
 import ShowMoviesByListType from "@/components/movies/show-movies-by-list-type";
 import { MovieListType } from "@/types/movie";
+import dynamic from "next/dynamic";
 import { Suspense } from "react";
 import MoviesPageLoadingSkeleton from "../loading";
+
+const MoviesPagination = dynamic(
+  () => import("@/components/movies/movies-pagination"),
+);
 
 interface MoviesByListTypeProps {
   params: { listType: MovieListType };
@@ -18,7 +22,7 @@ export default async function MoviesByListType(props: MoviesByListTypeProps) {
 
   return (
     <div className="flex min-h-[calc(100vh-11.5rem)] flex-col justify-between gap-10">
-      <h1 className="mt-6 capitalize">{listType.replace("_", " ")} Movies</h1>
+      <h1 className="my-6 capitalize">{listType.replace("_", " ")} Movies</h1>
 
       <Suspense key={currentPage} fallback={<MoviesPageLoadingSkeleton />}>
         <ShowMoviesByListType listType={listType} currentPage={currentPage} />

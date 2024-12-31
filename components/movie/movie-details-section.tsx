@@ -3,6 +3,7 @@ import { Movie } from "@/types/movie";
 import { Calendar, Clock, Command } from "lucide-react";
 import React from "react";
 import { v4 as uuid } from "uuid";
+import Image from "../Image";
 import CircleProgress from "../ui/circle-progressbar";
 
 type MovieDetailsProps = {
@@ -28,7 +29,12 @@ export default function MovieDetailsSection({
 
   return (
     <section className="flex flex-col gap-8 md:flex-row">
-      <img src={posterPath!} alt={title} className="h-auto w-64 rounded-xl" />
+      <Image
+        src={posterPath!}
+        alt={title}
+        className="h-auto w-64 rounded-xl"
+        fallbackPath="/camera.webp"
+      />
       <div className="flex flex-1 flex-col space-y-6">
         <h2>{title}</h2>
         <Genres genres={genres} />

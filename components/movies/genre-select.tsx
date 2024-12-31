@@ -22,7 +22,6 @@ import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { Check, ChevronsUpDown } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import React from "react";
-import { v4 as uuid } from "uuid";
 
 type Genre = {
   href: string;
@@ -55,47 +54,67 @@ export default function GenreSelect({
   return (
     <div
       className={cn(
-        "flex flex-wrap items-center justify-between gap-40",
+        "flex flex-wrap items-center justify-between gap-5",
         className,
       )}
       {...props}
     >
-      <p>Select a genre:</p>
-      <Drawer open={open} onOpenChange={setOpen}>
-        <DrawerTrigger asChild>
-          <Button variant="outline" className="w-[170px] justify-between">
-            {selectedGenre ? selectedGenre.title : "Genres"}
-            <ChevronsUpDown className="opacity-50" />
-          </Button>
-        </DrawerTrigger>
-        <DrawerContent>
-          <VisuallyHidden asChild>
-            <DrawerTitle>Movies Genre Drawer Title</DrawerTitle>
-          </VisuallyHidden>
-          <VisuallyHidden asChild>
-            <DrawerDescription>
-              Movies Genre Drawer Description
-            </DrawerDescription>
-          </VisuallyHidden>
-          <div className="mt-4 border-t">
-            <GenreList
-              selectedGenre={selectedGenre}
-              onSelect={handleGenreSelect}
-            />
-          </div>
-        </DrawerContent>
-      </Drawer>
+      <p className="font-medium">Select a genre:</p>
+      <GenreDrawer
+        open={open}
+        onOpenChange={setOpen}
+        selectedGenre={selectedGenre}
+        onGenreSelect={handleGenreSelect}
+      />
     </div>
   );
 }
 
-function GenreList({
+interface GenreDrawerProps {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  selectedGenre: Genre | undefined;
+  onGenreSelect: (genre: Genre | undefined) => void;
+}
+
+function GenreDrawer({
+  open,
+  onOpenChange,
   selectedGenre,
-  onSelect,
-}: {
+  onGenreSelect,
+}: GenreDrawerProps) {
+  return (
+    <Drawer open={open} onOpenChange={onOpenChange}>
+      <DrawerTrigger asChild>
+        <Button
+          variant="outline"
+          className="w-[140px] justify-between sm:w-[170px]"
+        >
+          {selectedGenre ? selectedGenre.title : "Genres"}
+          <ChevronsUpDown className="opacity-50" />
+        </Button>
+      </DrawerTrigger>
+      <DrawerContent>
+        <VisuallyHidden asChild>
+          <DrawerTitle>Movies Genre Drawer Title</DrawerTitle>
+        </VisuallyHidden>
+        <VisuallyHidden asChild>
+          <DrawerDescription>Movies Genre Drawer Description</DrawerDescription>
+        </VisuallyHidden>
+        <div className="mt-4 border-t">
+          <GenreList selectedGenre={selectedGenre} onSelect={onGenreSelect} />
+        </div>
+      </DrawerContent>
+    </Drawer>
+  );
+}
+
+interface GenreListProps {
   selectedGenre: Genre | undefined;
   onSelect: (genre: Genre | undefined) => void;
-}) {
+}
+
+function GenreList({ selectedGenre, onSelect }: GenreListProps) {
   const { replace } = useRouter();
 
   const handleSelect = (id: number) => {
@@ -112,7 +131,7 @@ function GenreList({
         <CommandGroup>
           {allGenres.map((genre) => (
             <CommandItem
-              key={uuid()}
+              key={genre.id}
               value={genre.title}
               onSelect={() => handleSelect(genre.id)}
               className="cursor-pointer"

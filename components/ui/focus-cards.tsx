@@ -3,7 +3,7 @@
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import React, { useState } from "react";
-import { v4 as uuid } from "uuid";
+import Image from "../Image";
 
 type Card = {
   id: number;
@@ -34,13 +34,11 @@ export const Card = React.memo(
           hovered !== null && hovered !== index && "scale-[0.98] blur-sm",
         )}
       >
-        <img
+        <Image
           src={hasImage ? card.imagePath! : "/user.webp"}
           alt={card.name}
-          className={cn(
-            "absolute inset-0 w-full object-cover",
-            hasImage ? "h-full" : "h-auto dark:invert",
-          )}
+          className={cn("absolute inset-0 h-full w-full object-cover")}
+          fallbackPath="/user.webp"
         />
         <div
           className={cn(
@@ -64,7 +62,7 @@ export function FocusCards({ cards }: { cards: Card[] }) {
     <div className="grid w-full grid-cols-2 gap-4 md:grid-cols-4">
       {cards.map((card, index) => (
         <Card
-          key={uuid()}
+          key={card.id}
           card={card}
           index={index}
           hovered={hovered}

@@ -1,5 +1,7 @@
 import HeroSection from "@/components/home/hero-section";
-import MovieSection from "@/components/movie-section";
+import dynamic from "next/dynamic";
+
+const MovieSection = dynamic(() => import("@/components/movie-section"));
 
 export default function HomePage() {
   return (

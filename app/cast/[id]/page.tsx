@@ -1,4 +1,5 @@
 import Error from "@/components/error";
+import Image from "@/components/Image";
 import { imageURL } from "@/lib/consts";
 import { getCastById } from "@/lib/data";
 import { formatBirthDate } from "@/lib/formatter";
@@ -34,13 +35,11 @@ export default async function CastPage({ params }: CastPageProps) {
   return (
     <div className="mx-auto my-10 min-h-[80dvh] max-w-screen-md space-y-9">
       <div className="flex flex-col gap-8 md:flex-row">
-        <img
+        <Image
           src={imagePath}
           alt={cast.name}
-          className={cn(
-            "w-80 rounded-lg object-cover",
-            hasImage ? "h-full" : "h-auto dark:invert",
-          )}
+          className={cn("h-full w-80 rounded-lg object-cover")}
+          fallbackPath="/user.webp"
         />
 
         <div className="flex-1 space-y-5">

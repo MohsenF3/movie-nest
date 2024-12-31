@@ -23,7 +23,7 @@ export default async function ShowMoviesByListType({
   }
 
   return (
-    <ul className="grid grid-cols-1 gap-8 xs:grid-cols-2 sm:gap-x-6 md:grid-cols-3 lg:grid-cols-4">
+    <ul className="movie-grid-list">
       {movies?.map((movie) => {
         return (
           <li key={uuid()} className="relative">
