@@ -30,7 +30,7 @@ export default async function MovieSlider({ target }: MovieSliderProps) {
         {movies.slice(0, ITEM_COUNT).map((movie) => (
           <CarouselItem
             key={uuid()}
-            className="relative h-[500px] w-full basis-2/3 select-none rounded-xl max-xs:min-w-full sm:basis-1/3 lg:basis-1/4"
+            className="relative h-[450px] w-full basis-2/3 select-none rounded-xl max-xs:min-w-full sm:basis-1/3 md:h-[500px] lg:basis-1/4"
           >
             <MovieCard {...movie} />
           </CarouselItem>
