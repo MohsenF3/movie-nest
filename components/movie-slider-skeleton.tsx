@@ -7,7 +7,7 @@ export default function MovieSliderSkeleton() {
       {Array.from({ length: 4 }).map(() => (
         <Skeleton
           key={uuid()}
-          className="max-xs:min-w-full h-[500px] w-full min-w-[300px] rounded-2xl bg-secondary"
+          className="h-[500px] w-full min-w-[300px] rounded-2xl bg-secondary max-xs:min-w-full"
         />
       ))}
     </div>

@@ -104,7 +104,7 @@
   }
 
   h6 {
-    @apply text-xs font-normal lg:text-base xl:text-lg;
+    @apply text-sm font-normal lg:text-base xl:text-lg;
   }
 
   p {

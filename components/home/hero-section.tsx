@@ -1,32 +1,34 @@
-import dynamic from "next/dynamic";
-import { FlipWords } from "../ui/flip-words";
+import { imageURL } from "@/lib/consts";
+import { getAllMoviesByListType } from "@/lib/data";
+import HeroCarousel from "./hero-carousel";
 
-const HeroSectionIcon = dynamic(() => import("./hero-section-icon"), {
-  ssr: false,
-});
+const TARGET = "now_playing";
+const ITEM_TO_SHOW_FROM = 0;
+const ITEM_TO_SHOW_TO = 6;
 
-export default function HeroSection() {
-  const words = ["Possibilities", "Stories", "Adventures"];
+export default async function HeroSection() {
+  const { type, message, movies, status } =
+    await getAllMoviesByListType(TARGET);
+
+  if ((type === "error" && status === 500) || !movies) {
+    return <p className="text-destructive">{message}</p>;
+  }
+
+  const data = movies
+    .slice(ITEM_TO_SHOW_FROM, ITEM_TO_SHOW_TO)
+    .map(({ overview, title, release_date, poster_path, id }) => {
+      return {
+        id,
+        overview,
+        title,
+        release_date,
+        poster_path: imageURL + poster_path,
+      };
+    });
 
   return (
-    <section className="flex flex-col items-center md:flex-row">
-      <div className="w-auto shrink-0 md:w-1/3">
-        <HeroSectionIcon />
-      </div>
-
-      <div className="space-y-5">
-        <h1 className="tracking-wide">
-          <span className="mb-1 block">
-            <span className="text-primary">Discover</span>
-            <FlipWords words={words} />
-          </span>
-          <span> Within the World of Cinema</span>
-        </h1>
-        <p>
-          Unleash your curiosity with insights, reviews, and stories that bring
-          movies to life.
-        </p>
-      </div>
+    <section>
+      <HeroCarousel movies={data} autoplay />
     </section>
   );
 }
