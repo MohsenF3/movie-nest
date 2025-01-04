@@ -34,7 +34,7 @@ export default function HeroCarousel({
   useAutoplay(autoplay, handleNext, 5000);
 
   return (
-    <div className="pb-10 max-md:overflow-hidden md:py-20">
+    <div className="pb-10 max-lg:overflow-hidden md:py-20">
       <div className="relative grid grid-cols-1 gap-10 md:grid-cols-2">
         <div className="relative h-[32rem] w-full max-w-lg md:h-[40.625rem]">
           <PosterImages
@@ -46,7 +46,7 @@ export default function HeroCarousel({
         </div>
 
         {/* Details Section */}
-        <div className="flex flex-col justify-between py-4">
+        <div className="z-10 flex flex-col justify-between py-4">
           <motion.div
             key={active}
             initial={{ y: 20, opacity: 0 }}

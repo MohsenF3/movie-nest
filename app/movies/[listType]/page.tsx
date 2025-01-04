@@ -22,7 +22,9 @@ export default async function MoviesByListType(props: MoviesByListTypeProps) {
 
   return (
     <div className="flex min-h-[calc(100vh-11.5rem)] flex-col justify-between gap-10">
-      <h1 className="my-6 capitalize">{listType.replace("_", " ")} Movies</h1>
+      <h1 className="capitalize md:mt-6">
+        {listType.replace("_", " ")} Movies
+      </h1>
 
       <Suspense key={currentPage} fallback={<MoviesPageLoadingSkeleton />}>
         <ShowMoviesByListType listType={listType} currentPage={currentPage} />
