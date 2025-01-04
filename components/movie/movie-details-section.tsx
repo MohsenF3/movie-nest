@@ -28,14 +28,21 @@ export default function MovieDetailsSection({
   const { hours, minutes } = convertMinutesToHours(totalTime!);
 
   return (
-    <section className="flex flex-col gap-8 md:flex-row">
+    <section
+      className="relative flex flex-col gap-8 overflow-hidden rounded-lg border bg-cover bg-top bg-no-repeat p-5 md:flex-row md:px-10 md:pb-48"
+      style={{
+        backgroundImage: `url(${posterPath})`,
+      }}
+    >
+      <div className="absolute inset-0 h-full w-full bg-popover/80" />
+
       <Image
         src={posterPath!}
         alt={title}
-        className="h-auto w-64 rounded-xl"
+        className="z-10 h-auto w-64 rounded-xl"
         fallbackPath="/camera.webp"
       />
-      <div className="flex flex-1 flex-col space-y-6">
+      <div className="z-10 flex flex-1 flex-col space-y-6">
         <h2>{title}</h2>
         <Genres genres={genres} />
         <div className="flex flex-wrap items-center gap-8">

@@ -34,15 +34,22 @@ export default async function CastPage({ params }: CastPageProps) {
 
   return (
     <div className="mx-auto my-10 min-h-[80dvh] max-w-screen-md space-y-9">
-      <div className="flex flex-col gap-8 md:flex-row">
+      <div
+        className="relative flex flex-col gap-8 overflow-hidden rounded-lg border bg-cover bg-center bg-no-repeat p-5 md:flex-row md:px-10 md:pb-48"
+        style={{
+          backgroundImage: `url(${imagePath})`,
+        }}
+      >
+        <div className="absolute inset-0 h-full w-full bg-popover/80" />
+
         <Image
           src={imagePath}
           alt={cast.name}
-          className={cn("h-full w-80 rounded-lg object-cover")}
+          className={cn("z-10 h-full w-80 rounded-lg object-cover")}
           fallbackPath="/user.webp"
         />
 
-        <div className="flex-1 space-y-5">
+        <div className="z-10 flex-1 space-y-5">
           <h2>{cast.name}</h2>
 
           <Details Icon={Cake} title="Birthday:">
