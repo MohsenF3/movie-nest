@@ -9,6 +9,12 @@ const GenreSelect = dynamic(() => import("@/components/movies/genre-select"), {
 
 type SearchParams = { [key: string]: string | string[] | undefined };
 
+export async function generateMetadata() {
+  return {
+    title: "Movies",
+  };
+}
+
 export default async function MoviesPage(props: {
   searchParams: SearchParams;
 }) {

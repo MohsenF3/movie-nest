@@ -13,6 +13,30 @@ interface CastPageProps {
   };
 }
 
+export async function generateMetadata({ params }: CastPageProps) {
+  const id = params.id;
+  const { status, cast } = await getCastById(id);
+  if (status === 404 || !cast) {
+    return {
+      title: "Cast not found",
+    };
+  }
+  return {
+    title: cast.name,
+    description: cast.biography,
+    openGraph: {
+      images: [
+        {
+          url: `${imageURL}${cast.profile_path}`,
+          width: 1200,
+          height: 630,
+          alt: cast.name,
+        },
+      ],
+    },
+  };
+}
+
 export default async function CastPage({ params }: CastPageProps) {
   const id = params.id;
   const { status, message, type, cast } = await getCastById(id);

@@ -1,3 +1,4 @@
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { buttonVariants } from "./ui/button";
 
@@ -20,8 +21,15 @@ export default function FantasyTitle({
       <div className="flex flex-wrap items-center justify-between gap-3">
         <h2 className="pl-3">{title}</h2>
 
-        <Link href={href} className={buttonVariants({ variant: "outline" })}>
+        <Link
+          href={href}
+          className={buttonVariants({
+            variant: "default",
+            className: "group gap-2",
+          })}
+        >
           {linkText ?? "View All"}
+          <ArrowRight className="transition-transform duration-200 group-hover:translate-x-1" />
         </Link>
       </div>
       {hasLine && <hr />}

@@ -39,7 +39,7 @@ export default function MovieDetailsSection({
       <Image
         src={posterPath!}
         alt={title}
-        className="z-10 h-auto w-64 rounded-xl"
+        className="z-10 h-auto w-80 rounded-xl"
         fallbackPath="/camera.webp"
       />
       <div className="z-10 flex flex-1 flex-col space-y-6">

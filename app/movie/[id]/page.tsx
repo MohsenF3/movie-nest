@@ -14,6 +14,30 @@ interface MoviePageProps {
   };
 }
 
+export async function generateMetadata({ params }: MoviePageProps) {
+  const id = params.id;
+  const { status, movie } = await getMovieById(id);
+  if (status === 404 || !movie) {
+    return {
+      title: "Movie not found",
+    };
+  }
+  return {
+    title: movie.title,
+    description: movie.overview,
+    openGraph: {
+      images: [
+        {
+          url: `${imageURL}${movie.poster_path}`,
+          width: 1200,
+          height: 630,
+          alt: movie.title,
+        },
+      ],
+    },
+  };
+}
+
 export default async function MoviePage({ params }: MoviePageProps) {
   const id = params.id;
   const { status, movie, message, type } = await getMovieById(id);
