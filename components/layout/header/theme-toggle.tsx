@@ -10,7 +10,12 @@ export function ThemeToggle() {
   const handleChangeTheme = () => setTheme(theme === "dark" ? "light" : "dark");
 
   return (
-    <Button onClick={handleChangeTheme} variant="outline" size="icon">
+    <Button
+      onClick={handleChangeTheme}
+      variant="outline"
+      size="icon"
+      aria-label="Toggle theme"
+    >
       <Sun className="hidden h-5 w-5 animate-fade_in dark:inline" />
       <Moon className="inline h-5 w-5 animate-fade_in dark:hidden" />
     </Button>

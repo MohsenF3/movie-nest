@@ -60,7 +60,7 @@ function GenreCard({ href, title, Icon, id }: GenreCardProps) {
           aria-hidden="true"
         />
       )}
-      <h4 className="mt-4">{title}</h4>
+      <p className="mt-4 text-xl md:text-2xl">{title}</p>
     </Link>
   );
 }

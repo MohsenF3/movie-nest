@@ -20,6 +20,7 @@ export default function NavigationButton({
       variant="ghost"
       size="icon"
       className="group rounded-full bg-muted"
+      aria-label={`${direction} navigation`}
     >
       <Icon className="size-5 transition-transform duration-300 group-hover:rotate-12" />
     </Button>
