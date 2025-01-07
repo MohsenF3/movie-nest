@@ -12,7 +12,7 @@ interface MovieSectionProps {
 export default function MovieSection({ target, title }: MovieSectionProps) {
   return (
     <section className="relative space-y-7">
-      <FantasyTitle title={title} href={`/movies?type=${target}`} />
+      <FantasyTitle title={title} href={`/movies/${target}`} />
 
       <React.Suspense fallback={<MovieSliderSkeleton />}>
         <MovieSlider target={target} />

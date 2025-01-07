@@ -15,6 +15,12 @@ interface MoviesByListTypeProps {
   };
 }
 
+export async function generateMetadata({ params }: MoviesByListTypeProps) {
+  return {
+    title: `${params.listType.replace("_", " ")} Movies`,
+  };
+}
+
 export default async function MoviesByListType(props: MoviesByListTypeProps) {
   const searchParams = props.searchParams;
   const listType = props.params.listType;

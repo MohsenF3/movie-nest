@@ -16,7 +16,7 @@ export default function Image({
 
   return (
     <img
-      src={`/api/optimize-image?url=${encodeURIComponent(src!)}`}
+      src={src}
       loading="lazy"
       className={className}
       onError={(e) => {
