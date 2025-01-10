@@ -2,6 +2,7 @@ import Error from "@/components/error";
 import CastSection from "@/components/movie/cast-section";
 import MovieDetailsSection from "@/components/movie/movie-details-section";
 import MovieTrailerSection from "@/components/movie/movie-trailer-section";
+import SimilarSection from "@/components/movie/similar-section";
 import { imageURL } from "@/lib/consts";
 import { getMovieById } from "@/lib/data";
 import { notFound } from "next/navigation";
@@ -73,6 +74,8 @@ export default async function MoviePage({ params }: MoviePageProps) {
       <MovieTrailerSection id={trailerVideo?.key ?? ""} />
 
       <CastSection casts={casts!} />
+
+      <SimilarSection movies={movie.similar?.results ?? []} />
     </div>
   );
 }

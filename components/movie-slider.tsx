@@ -1,5 +1,4 @@
-import { getAllMoviesByListType } from "@/lib/data";
-import { MovieListType } from "@/types/movie";
+import { Movie } from "@/types/movie";
 
 import {
   Carousel,
@@ -11,19 +10,12 @@ import { v4 as uuid } from "uuid";
 import MovieCard from "./movie-card";
 
 interface MovieSliderProps {
-  target: MovieListType;
+  movies: Movie[];
 }
 
 const ITEM_COUNT = 10;
 
-export default async function MovieSlider({ target }: MovieSliderProps) {
-  const { type, message, movies, status } =
-    await getAllMoviesByListType(target);
-
-  if ((type === "error" && status === 500) || !movies) {
-    return <p className="text-destructive">{message}</p>;
-  }
-
+export default async function MovieSlider({ movies }: MovieSliderProps) {
   return (
     <Carousel>
       <CarouselContent>

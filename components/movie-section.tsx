@@ -1,3 +1,4 @@
+import { getAllMoviesByListType } from "@/lib/data";
 import { MovieListType } from "@/types/movie";
 import React from "react";
 import FantasyTitle from "./fantasy-title";
@@ -9,14 +10,31 @@ interface MovieSectionProps {
   target: MovieListType;
 }
 
-export default function MovieSection({ target, title }: MovieSectionProps) {
+export default async function MovieSection({
+  title,
+  target,
+}: MovieSectionProps) {
+  const { type, message, movies, status } =
+    await getAllMoviesByListType(target);
+
+  const hasError = (type === "error" && status === 500) || !movies;
+
+  const renderContent = () => {
+    if (hasError) {
+      return <p className="text-destructive">{message}</p>;
+    }
+
+    return (
+      <React.Suspense fallback={<MovieSliderSkeleton />}>
+        <MovieSlider movies={movies} />
+      </React.Suspense>
+    );
+  };
+
   return (
     <section className="relative space-y-7">
       <FantasyTitle title={title} href={`/movies/${target}`} />
-
-      <React.Suspense fallback={<MovieSliderSkeleton />}>
-        <MovieSlider target={target} />
-      </React.Suspense>
+      {renderContent()}
     </section>
   );
 }

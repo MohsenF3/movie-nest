@@ -33,6 +33,7 @@ export type Movie = {
   tagline?: string;
   videos?: Videos;
   credits?: Credits;
+  similar?: Similar;
   media_type: string;
 };
 
@@ -78,6 +79,10 @@ type Video = {
 
 type Credits = {
   cast: CastMember[];
+};
+
+type Similar = {
+  results: Movie[];
 };
 
 export type CastMember = {
