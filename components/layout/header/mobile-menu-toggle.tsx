@@ -13,6 +13,7 @@ export function MobileMenuToggle() {
       variant="ghost"
       size="icon"
       className="inline-flex md:hidden"
+      aria-label="Toggle menu"
     >
       <MenuIcon className="h-4 w-4" />
     </Button>

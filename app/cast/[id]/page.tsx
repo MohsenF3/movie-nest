@@ -56,7 +56,7 @@ export default async function CastPage({ params }: CastPageProps) {
   const age = calculateAge(cast.birthday);
 
   return (
-    <div className="mx-auto my-10 min-h-[80dvh] max-w-screen-md space-y-9">
+    <div className="my-10 min-h-[80dvh] space-y-9">
       <div className="relative flex flex-col gap-8 overflow-hidden rounded-lg border p-5 md:flex-row md:px-10 md:pb-24">
         <div className="absolute inset-0 h-full w-full bg-popover/80" />
 
@@ -94,7 +94,7 @@ function CastBiography({ biography }: { biography: string | undefined }) {
       <h3>Biography</h3>
 
       <p className="text-sm leading-relaxed tracking-wide text-muted-foreground md:text-base">
-        {biography ?? "No biography available."}
+        {biography || "No biography available."}
       </p>
     </div>
   );

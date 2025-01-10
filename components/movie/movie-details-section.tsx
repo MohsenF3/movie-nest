@@ -31,7 +31,7 @@ export default function MovieDetailsSection({
 
   return (
     <section
-      className="relative flex flex-col gap-8 overflow-hidden rounded-lg border bg-cover bg-top bg-no-repeat p-5 md:flex-row md:px-10 md:pb-48"
+      className="relative flex flex-col gap-8 overflow-hidden rounded-lg border bg-cover bg-top bg-no-repeat p-5 md:flex-row md:px-10 md:pb-56"
       style={{
         backgroundImage: `url(${backdropPath})`,
       }}
@@ -41,7 +41,7 @@ export default function MovieDetailsSection({
       <CustomImage
         src={posterPath!}
         alt={title}
-        containerClassName="z-10 w-full md:w-80 h-[600px] md:h-[500px] rounded-lg"
+        containerClassName="z-10 w-full md:w-80 h-[600px] md:h-[500px] border rounded-lg"
         fallbackPath="/camera.webp"
         sizes="(max-width: 768px) 100vw, 50vw"
       />

@@ -35,25 +35,32 @@ export default function CustomImage({
 
   return (
     <div className={cn("relative overflow-hidden", containerClassName)}>
-      <Image
-        loader={CustomLoader}
-        src={src}
-        alt={alt}
-        fill
-        className={cn(
-          "object-cover",
-          isLoading ? "scale-110 blur-xl" : "scale-100 blur-0",
-          className,
-        )}
-        onError={(e) => {
-          if (!hasError) {
-            setHasError(true);
-            e.currentTarget.src = fallbackPath;
-          }
-        }}
-        onLoad={() => setLoading(false)}
-        {...props}
-      />
+      {hasError ? (
+        // Fallback image when an error occurs
+        <Image
+          src={fallbackPath}
+          alt={alt}
+          fill
+          className={cn("object-cover", className)}
+          onLoad={() => setLoading(false)}
+          {...props}
+        />
+      ) : (
+        <Image
+          loader={CustomLoader}
+          src={src}
+          alt={alt}
+          fill
+          className={cn(
+            "object-cover",
+            isLoading ? "scale-110 blur-xl" : "scale-100 blur-0",
+            className,
+          )}
+          onError={() => setHasError(true)}
+          onLoad={() => setLoading(false)}
+          {...props}
+        />
+      )}
     </div>
   );
 }
