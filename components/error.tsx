@@ -23,7 +23,7 @@ export default function Error({ message, className, ...props }: ErrorProps) {
       {...props}
     >
       <div className="h-[150px] w-[200px]">
-        <Image src={errorImage} alt="error image" />
+        <Image src={errorImage} alt="error image" placeholder="blur" />
       </div>
 
       <p className="text-muted-foreground">

@@ -3,7 +3,7 @@
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import React, { useState } from "react";
-import Image from "../Image";
+import CustomImage from "./custom-image";
 
 type Card = {
   id: number;
@@ -23,21 +23,20 @@ export const Card = React.memo(
     hovered: number | null;
     setHovered: React.Dispatch<React.SetStateAction<number | null>>;
   }) => {
-    const hasImage = card.imagePath !== null;
     return (
       <Link
         href={`/cast/${card.id}`}
         onMouseEnter={() => setHovered(index)}
         onMouseLeave={() => setHovered(null)}
         className={cn(
-          "relative h-60 w-full overflow-hidden rounded-lg shadow-lg transition-all duration-300 ease-out md:h-56",
+          "relative h-80 w-full overflow-hidden rounded-lg shadow-lg transition-all duration-300 ease-out md:h-56",
           hovered !== null && hovered !== index && "scale-[0.98] blur-sm",
         )}
       >
-        <Image
-          src={hasImage ? card.imagePath! : "/user.webp"}
+        <CustomImage
+          src={card.imagePath! ?? "/user.webp"}
           alt={card.name}
-          className={cn("absolute inset-0 h-full w-full object-cover")}
+          containerClassName="absolute inset-0 h-full w-full"
           fallbackPath="/user.webp"
         />
         <div

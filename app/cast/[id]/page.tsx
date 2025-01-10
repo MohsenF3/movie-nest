@@ -1,9 +1,9 @@
 import Error from "@/components/error";
-import Image from "@/components/Image";
+import CustomImage from "@/components/ui/custom-image";
 import { imageURL } from "@/lib/consts";
 import { getCastById } from "@/lib/data";
 import { formatBirthDate } from "@/lib/formatter";
-import { calculateAge, cn } from "@/lib/utils";
+import { calculateAge } from "@/lib/utils";
 import { Cake, User } from "lucide-react";
 import { notFound } from "next/navigation";
 
@@ -51,26 +51,21 @@ export default async function CastPage({ params }: CastPageProps) {
     return <Error message={message} />;
   }
 
-  const hasImage = cast.profile_path !== null;
-  const imagePath = hasImage ? `${imageURL}${cast.profile_path}` : "/user.webp";
+  const imagePath = cast.profile_path ?? "/user.webp";
   const birthDate = formatBirthDate(cast.birthday);
   const age = calculateAge(cast.birthday);
 
   return (
     <div className="mx-auto my-10 min-h-[80dvh] max-w-screen-md space-y-9">
-      <div
-        className="relative flex flex-col gap-8 overflow-hidden rounded-lg border bg-cover bg-center bg-no-repeat p-5 md:flex-row md:px-10 md:pb-48"
-        style={{
-          backgroundImage: `url(${imagePath})`,
-        }}
-      >
+      <div className="relative flex flex-col gap-8 overflow-hidden rounded-lg border p-5 md:flex-row md:px-10 md:pb-24">
         <div className="absolute inset-0 h-full w-full bg-popover/80" />
 
-        <Image
+        <CustomImage
           src={imagePath}
           alt={cast.name}
-          className={cn("z-10 h-full w-80 rounded-lg object-cover")}
+          containerClassName="z-10 w-full md:w-80 h-[500px] rounded-lg"
           fallbackPath="/user.webp"
+          sizes="(max-width: 768px) 100vw, 50vw"
         />
 
         <div className="z-10 flex-1 space-y-5">
@@ -83,7 +78,7 @@ export default async function CastPage({ params }: CastPageProps) {
             {cast.gender === 1 ? "Woman" : "Male"}
           </Details>
           <Details Icon={Cake} title="Place of Birth:">
-            {cast.place_of_birth ? cast.place_of_birth : "No information"}
+            {cast.place_of_birth ?? "No information available."}
           </Details>
         </div>
       </div>
@@ -99,7 +94,7 @@ function CastBiography({ biography }: { biography: string | undefined }) {
       <h3>Biography</h3>
 
       <p className="text-sm leading-relaxed tracking-wide text-muted-foreground md:text-base">
-        {biography ? biography : "No biography available."}
+        {biography ?? "No biography available."}
       </p>
     </div>
   );

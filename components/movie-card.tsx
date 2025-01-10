@@ -1,4 +1,3 @@
-import { imageURL } from "@/lib/consts";
 import { Movie } from "@/types/movie";
 import { Zap } from "lucide-react";
 import Link from "next/link";
@@ -12,7 +11,7 @@ export default function MovieCard(movie: Movie) {
       className="relative block h-full w-full space-y-2 rounded-xl"
     >
       <DirectionAwareHover
-        image={{ url: `${imageURL}${movie.poster_path}`, alt: movie.title }}
+        image={{ url: movie.poster_path!, alt: movie.title }}
       >
         <div className="h-full w-full space-y-2">
           <CircleProgress rate={movie.vote_average} />

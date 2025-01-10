@@ -1,4 +1,3 @@
-import { imageURL } from "@/lib/consts";
 import { getAllMoviesByListType } from "@/lib/data";
 import HeroCarousel from "./hero-carousel";
 
@@ -22,7 +21,7 @@ export default async function HeroSection() {
         overview,
         title,
         release_date,
-        poster_path: imageURL + poster_path,
+        poster_path,
       };
     });
 

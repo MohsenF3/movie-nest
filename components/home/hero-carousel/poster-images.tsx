@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "@/components/Image";
+import CustomImage from "@/components/ui/custom-image";
 import { AnimatePresence, motion } from "framer-motion";
 import { MovieCarousel } from "./index";
 
@@ -63,12 +63,14 @@ export default function PosterImages({
           }}
           className="absolute inset-0 origin-bottom cursor-grab"
         >
-          <Image
+          <CustomImage
             src={movie.poster_path!}
             alt={movie.title}
             draggable={false}
-            className="h-full w-full rounded-xl object-cover object-top"
+            priority
+            containerClassName="h-full w-full rounded-xl"
             fallbackPath="/camera.webp"
+            sizes="(max-width: 768px) 100vw, 50vw"
           />
         </motion.div>
       ))}

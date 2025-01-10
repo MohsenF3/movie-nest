@@ -36,7 +36,7 @@ export default function HeroCarousel({
   return (
     <div className="pb-10 max-lg:overflow-hidden md:py-20">
       <div className="relative grid grid-cols-1 gap-10 md:grid-cols-2">
-        <div className="relative h-[32rem] w-full max-w-lg md:h-[40.625rem]">
+        <div className="relative h-[40.625rem] w-full max-w-lg">
           <PosterImages
             movies={movies}
             active={active}

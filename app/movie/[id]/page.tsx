@@ -61,7 +61,8 @@ export default async function MoviePage({ params }: MoviePageProps) {
     <div className="mx-auto my-10 max-w-screen-md space-y-9">
       <MovieDetailsSection
         title={movie.title}
-        posterPath={`${imageURL}${movie.poster_path}`}
+        backdropPath={`${imageURL}${movie.backdrop_path}`}
+        posterPath={movie.poster_path}
         genres={movie.genres}
         releaseDate={movie.release_date}
         totalTime={movie.runtime}

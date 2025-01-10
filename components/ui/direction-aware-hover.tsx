@@ -3,7 +3,7 @@
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import { useRef, useState } from "react";
-import Image from "../Image";
+import CustomImage from "./custom-image";
 
 interface DirectionAwareHoverProps {
   image: {
@@ -89,14 +89,13 @@ export const DirectionAwareHover = ({
               ease: "easeOut",
             }}
           >
-            <Image
+            <CustomImage
               alt={image.alt}
-              className={cn(
-                "h-full w-full scale-[1.15] object-cover object-top",
-                image.className,
-              )}
+              className={cn("", image.className)}
+              containerClassName="w-full h-[450px] md:h-[500px] scale-[1.15] "
               src={image.url}
               fallbackPath="/camera.webp"
+              sizes="(max-width: 300px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
             />
           </motion.div>
           <motion.div
