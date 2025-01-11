@@ -12,7 +12,7 @@ export default function SimilarSection({ movies }: SimilarSectionProps) {
       {movies.length ? (
         <MovieSlider movies={movies} />
       ) : (
-        <p className="text-sm">"No similar movies available.</p>
+        <p className="text-sm">No similar movies available.</p>
       )}
     </section>
   );
