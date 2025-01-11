@@ -9,7 +9,11 @@ export default function SimilarSection({ movies }: SimilarSectionProps) {
   return (
     <section className="card-section">
       <h3>Similar Movies</h3>
-      <MovieSlider movies={movies} />
+      {movies.length ? (
+        <MovieSlider movies={movies} />
+      ) : (
+        <p className="text-sm">"No similar movies available.</p>
+      )}
     </section>
   );
 }

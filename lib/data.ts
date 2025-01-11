@@ -13,10 +13,18 @@ export const getAllMoviesByListType = async (
     );
 
     const data = await response.json();
-    const totalPages: number = data.total_pages;
+    const originalTotalPages: number = data.total_pages;
+    // Limit the total pages to a maximum of 3 digits by truncating extra digits
+    const limitedTotalPages = limitToThreeDigits(originalTotalPages);
+
     const movies: Movie[] = data.results;
 
-    return { type: "success", status: 200, movies, totalPages };
+    return {
+      type: "success",
+      status: 200,
+      movies,
+      totalPages: limitedTotalPages,
+    };
   } catch (error) {
     return {
       type: "error",
@@ -26,10 +34,14 @@ export const getAllMoviesByListType = async (
   }
 };
 
+function limitToThreeDigits(totalPages: number): number {
+  return totalPages > 999 ? Math.floor(totalPages / 100) : totalPages;
+}
+
 export const getMovieById = async (id: number) => {
   try {
     const response = await fetch(
-      `${base_url}/movie/${id}?api_key=${key}&append_to_response=videos,credits,similar`,
+      `${base_url}/movie/${id}?api_key=${key}&append_to_response=videos,credits,similar,reviews`,
     );
     const movie = await response.json();
 

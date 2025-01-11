@@ -19,11 +19,15 @@ export default function CastSection({ casts }: CastSectionProps) {
     <section className="card-section">
       <h3>Cast</h3>
 
-      <div className="movie-grid-list">
-        {castsData.map((cast) => (
-          <CastCard key={cast.id} {...cast} />
-        ))}
-      </div>
+      {casts.length ? (
+        <div className="movie-grid-list">
+          {castsData.map((cast) => (
+            <CastCard key={cast.id} {...cast} />
+          ))}
+        </div>
+      ) : (
+        <p>No cast information available.</p>
+      )}
     </section>
   );
 }
@@ -40,9 +44,9 @@ function CastCard({ id, name, profile_path, character }: CastCardProps) {
       className="group space-y-4 rounded-lg border border-transparent transition-all duration-300 hover:border-primary"
     >
       <CustomImage
-        src={profile_path ?? "/user.webp"}
+        src={profile_path || "/user.webp"}
         alt={name}
-        containerClassName="w-full h-[400px] rounded-lg"
+        containerClassName="w-full h-[250px] md:h-[400px] rounded-lg"
         className="saturate-100 transition-all duration-300 hover:object-top group-hover:saturate-100 md:saturate-0"
         fallbackPath="/user.webp"
         sizes="(max-width: 300px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"

@@ -1,12 +1,8 @@
+import MoviesPagination from "@/components/movies/movies-pagination";
 import ShowMoviesByListType from "@/components/movies/show-movies-by-list-type";
 import { MovieListType } from "@/types/movie";
-import dynamic from "next/dynamic";
 import { Suspense } from "react";
 import MoviesPageLoadingSkeleton from "../loading";
-
-const MoviesPagination = dynamic(
-  () => import("@/components/movies/movies-pagination"),
-);
 
 interface MoviesByListTypeProps {
   params: { listType: MovieListType };

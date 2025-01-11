@@ -78,7 +78,7 @@ export default async function CastPage({ params }: CastPageProps) {
             {cast.gender === 1 ? "Woman" : "Male"}
           </Details>
           <Details Icon={Cake} title="Place of Birth:">
-            {cast.place_of_birth ?? "No information available."}
+            {cast.place_of_birth || "No information available."}
           </Details>
         </div>
       </div>

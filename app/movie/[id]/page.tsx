@@ -73,7 +73,7 @@ export default async function MoviePage({ params }: MoviePageProps) {
 
       <MovieTrailerSection id={trailerVideo?.key ?? ""} />
 
-      <CastSection casts={casts!} />
+      <CastSection casts={casts ?? []} />
 
       <SimilarSection movies={movie.similar?.results ?? []} />
     </div>

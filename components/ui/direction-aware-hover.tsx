@@ -92,7 +92,7 @@ export const DirectionAwareHover = ({
             <CustomImage
               alt={image.alt}
               className={cn("", image.className)}
-              containerClassName="w-full h-[450px] md:h-[500px] scale-[1.15] "
+              containerClassName="w-full h-[300px] md:h-[500px] scale-[1.15] "
               src={image.url}
               fallbackPath="/camera.webp"
               sizes="(max-width: 300px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"

@@ -28,7 +28,7 @@ export default function FantasyTitle({
             className: "group gap-2",
           })}
         >
-          {linkText ?? "View All"}
+          {linkText || "View All"}
           <ArrowRight className="transition-transform duration-200 group-hover:translate-x-1" />
         </Link>
       </div>

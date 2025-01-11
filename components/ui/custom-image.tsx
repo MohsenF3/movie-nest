@@ -48,7 +48,7 @@ export default function CustomImage({
       ) : (
         <Image
           loader={CustomLoader}
-          src={src}
+          src={src ?? ""}
           alt={alt}
           fill
           className={cn(
