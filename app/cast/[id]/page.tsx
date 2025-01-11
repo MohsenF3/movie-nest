@@ -56,14 +56,14 @@ export default async function CastPage({ params }: CastPageProps) {
   const age = calculateAge(cast.birthday);
 
   return (
-    <div className="my-10 min-h-[80dvh] space-y-9">
-      <div className="relative flex flex-col gap-8 overflow-hidden rounded-lg border p-5 md:flex-row md:px-10 md:pb-24">
+    <div className="mb-10 min-h-[80dvh] space-y-9 md:my-10">
+      <div className="relative flex flex-col gap-8 overflow-hidden rounded-lg border p-3 md:flex-row md:p-5 md:px-10 md:pb-24">
         <div className="absolute inset-0 h-full w-full bg-popover/80" />
 
         <CustomImage
           src={imagePath}
           alt={cast.name}
-          containerClassName="z-10 w-full md:w-80 h-[500px] rounded-lg"
+          containerClassName="z-10 w-full md:w-80 h-[400px] md:h-[500px] rounded-lg"
           fallbackPath="/user.webp"
           sizes="(max-width: 768px) 100vw, 50vw"
         />

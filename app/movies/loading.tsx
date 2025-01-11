@@ -7,7 +7,7 @@ export default function MoviesPageLoadingSkeleton() {
       {Array.from({ length: 20 }).map(() => (
         <Skeleton
           key={uuid()}
-          className="h-full w-full rounded-2xl bg-secondary max-xs:min-w-full"
+          className="h-[300px] w-full rounded-2xl bg-secondary max-xs:min-w-full md:h-[500px]"
         />
       ))}
     </div>

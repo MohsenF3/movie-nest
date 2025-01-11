@@ -1,7 +1,9 @@
-import CallToAction from "@/components/home/call-to-action";
-import GenreList from "@/components/home/genre-list";
 import HeroSection from "@/components/home/hero-section";
-import MovieSection from "@/components/movie-section";
+import dynamic from "next/dynamic";
+
+const GenreList = dynamic(() => import("@/components/home/genre-list"));
+const CallToAction = dynamic(() => import("@/components/home/call-to-action"));
+const MovieSection = dynamic(() => import("@/components/movie-section"));
 
 export default function HomePage() {
   return (

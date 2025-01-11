@@ -41,7 +41,7 @@ function limitToThreeDigits(totalPages: number): number {
 export const getMovieById = async (id: number) => {
   try {
     const response = await fetch(
-      `${base_url}/movie/${id}?api_key=${key}&append_to_response=videos,credits,similar,reviews`,
+      `${base_url}/movie/${id}?api_key=${key}&append_to_response=videos,credits,similar`,
     );
     const movie = await response.json();
 

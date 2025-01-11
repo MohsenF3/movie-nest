@@ -1,11 +1,17 @@
 import Error from "@/components/error";
-import CastSection from "@/components/movie/cast-section";
 import MovieDetailsSection from "@/components/movie/movie-details-section";
-import MovieTrailerSection from "@/components/movie/movie-trailer-section";
-import SimilarSection from "@/components/movie/similar-section";
 import { imageURL } from "@/lib/consts";
 import { getMovieById } from "@/lib/data";
+import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
+
+const CastSection = dynamic(() => import("@/components/movie/cast-section"));
+const MovieTrailerSection = dynamic(
+  () => import("@/components/movie/movie-trailer-section"),
+);
+const SimilarSection = dynamic(
+  () => import("@/components/movie/similar-section"),
+);
 
 interface MoviePageProps {
   params: {
@@ -57,7 +63,7 @@ export default async function MoviePage({ params }: MoviePageProps) {
   const casts = movie.credits?.cast.slice(0, 12);
 
   return (
-    <div className="my-10 space-y-9">
+    <div className="mb-10 space-y-9 md:my-10">
       <MovieDetailsSection
         title={movie.title}
         backdropPath={`${imageURL}${movie.backdrop_path}`}
