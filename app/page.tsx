@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 
 const GenreList = dynamic(() => import("@/components/home/genre-list"));
 const CallToAction = dynamic(() => import("@/components/home/call-to-action"));
-const MovieSection = dynamic(() => import("@/components/movie-section"));
+const MovieSections = dynamic(() => import("@/components/home/movie-sections"));
 
 export default function HomePage() {
   return (
@@ -14,12 +14,7 @@ export default function HomePage() {
 
       <CallToAction />
 
-      <div className="space-y-20 py-20">
-        <MovieSection title="Now Playing" target="now_playing" />
-        <MovieSection title="Upcoming" target="upcoming" />
-        <MovieSection title="Top Rated" target="top_rated" />
-        <MovieSection title="Popular" target="popular" />
-      </div>
+      <MovieSections />
     </div>
   );
 }

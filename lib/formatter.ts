@@ -1,3 +1,5 @@
+import { MovieListType } from "@/types/movie";
+
 export function formatBirthDate(birthDateString: string): string {
   const birthDate = new Date(birthDateString);
   const options: Intl.DateTimeFormatOptions = {
@@ -7,3 +9,7 @@ export function formatBirthDate(birthDateString: string): string {
   };
   return birthDate.toLocaleDateString("en-US", options);
 }
+
+export const formatListType = (listType: MovieListType): string => {
+  return listType.replace("_", " ");
+};

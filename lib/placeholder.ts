@@ -125,3 +125,10 @@ export const allGenres = genres.map((genre) => ({
   // Add href to each genre
   href: genre.id === 0 ? "/movies" : `/movies?genre=${genre.id}`,
 }));
+
+export const VALID_LIST_TYPES = [
+  "now_playing",
+  "top_rated",
+  "popular",
+  "upcoming",
+] as const;

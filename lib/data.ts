@@ -2,22 +2,33 @@
 
 import { Cast, Movie, MovieListType } from "@/types/movie";
 import { base_url, key } from "./consts";
+import { formatListType } from "./formatter";
 
 export const getAllMoviesByListType = async (
   target: MovieListType,
   page: number = 1,
 ) => {
+  const listTypeTitle = formatListType(target);
+
   try {
     const response = await fetch(
       `${base_url}/movie/${target}?api_key=${key}&page=${page}`,
     );
 
     const data = await response.json();
+    const movies: Movie[] = data.results;
+
+    if (!movies && data.success == false) {
+      return {
+        type: "error",
+        status: 404,
+        message: `Failed to fetch ${listTypeTitle} movies`,
+      };
+    }
+
     const originalTotalPages: number = data.total_pages;
     // Limit the total pages to a maximum of 3 digits by truncating extra digits
     const limitedTotalPages = limitToThreeDigits(originalTotalPages);
-
-    const movies: Movie[] = data.results;
 
     return {
       type: "success",
@@ -29,7 +40,7 @@ export const getAllMoviesByListType = async (
     return {
       type: "error",
       status: 500,
-      message: `Failed to fetch ${target.replace("_", " ")} movies`,
+      message: `Failed to fetch ${listTypeTitle} movies`,
     };
   }
 };

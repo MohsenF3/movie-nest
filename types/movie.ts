@@ -1,8 +1,6 @@
-export type MovieListType =
-  | "now_playing"
-  | "top_rated"
-  | "upcoming"
-  | "popular";
+import { VALID_LIST_TYPES } from "@/lib/placeholder";
+
+export type MovieListType = (typeof VALID_LIST_TYPES)[number];
 
 export type Movie = {
   adult: boolean;
