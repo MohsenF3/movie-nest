@@ -42,7 +42,7 @@ export default function MovieDetailsSection({
         src={posterPath!}
         alt={title}
         containerClassName="z-10 w-full md:w-80 h-[450px] md:h-[500px] border rounded-lg"
-        fallbackPath="/camera.webp"
+        fallbackPath="/no-poster.webp"
         sizes="(max-width: 768px) 100vw, 50vw"
       />
       <div className="z-10 flex flex-1 flex-col space-y-6">

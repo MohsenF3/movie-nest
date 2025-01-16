@@ -44,11 +44,11 @@ function CastCard({ id, name, profile_path, character }: CastCardProps) {
       className="group space-y-4 rounded-lg border border-transparent transition-all duration-300 hover:border-primary"
     >
       <CustomImage
-        src={profile_path || "/user.webp"}
+        src={profile_path || "/avatar.webp"}
         alt={name}
         containerClassName="w-full h-[250px] md:h-[400px] rounded-lg"
         className="saturate-100 transition-all duration-300 hover:object-top group-hover:saturate-100 md:saturate-0"
-        fallbackPath="/user.webp"
+        fallbackPath="/avatar.webp"
         sizes="(max-width: 300px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
       />
 

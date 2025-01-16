@@ -69,7 +69,7 @@ export default function PosterImages({
             draggable={false}
             priority
             containerClassName="h-full w-full rounded-xl"
-            fallbackPath="/camera.webp"
+            fallbackPath="/no-poster.webp"
             sizes="(max-width: 768px) 100vw, 50vw"
           />
         </motion.div>

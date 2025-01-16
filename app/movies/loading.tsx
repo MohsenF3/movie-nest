@@ -3,7 +3,7 @@ import { v4 as uuid } from "uuid";
 
 export default function MoviesPageLoadingSkeleton() {
   return (
-    <div className="movie-grid-list mb-6 h-[250vh] w-full">
+    <div className="movie-grid-list mb-6 w-full">
       {Array.from({ length: 20 }).map(() => (
         <Skeleton
           key={uuid()}

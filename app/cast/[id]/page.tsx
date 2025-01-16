@@ -51,7 +51,7 @@ export default async function CastPage({ params }: CastPageProps) {
     return <Error message={message} />;
   }
 
-  const imagePath = cast.profile_path ?? "/user.webp";
+  const imagePath = cast.profile_path ?? "/avatar.webp";
   const birthDate = formatBirthDate(cast.birthday);
   const age = calculateAge(cast.birthday);
 
@@ -64,7 +64,7 @@ export default async function CastPage({ params }: CastPageProps) {
           src={imagePath}
           alt={cast.name}
           containerClassName="z-10 w-full md:w-80 h-[400px] md:h-[500px] rounded-lg"
-          fallbackPath="/user.webp"
+          fallbackPath="/avatar.webp"
           sizes="(max-width: 768px) 100vw, 50vw"
         />
 
