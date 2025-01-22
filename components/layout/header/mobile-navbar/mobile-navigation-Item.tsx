@@ -5,23 +5,22 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { useActiveNavigation } from "@/hooks/use-active-navigation";
-import { cn } from "@/lib/utils";
+import { activeNavigationLink, cn } from "@/lib/utils";
 import { useSidebar } from "@/providers/sidebar-provider";
 import { NavigationMenuDataType } from "@/types/placeholder";
 import Link from "next/link";
-
-interface MobileNavigationItemProps extends NavigationMenuDataType {}
+import { usePathname } from "next/navigation";
 
 export default function MobileNavigationItem({
   href,
   icon: Icon,
   label,
   items,
-}: MobileNavigationItemProps) {
+}: NavigationMenuDataType) {
   const { setValue } = useSidebar();
+  const pathname = usePathname();
 
-  const isActive = useActiveNavigation(href);
+  const isActive = activeNavigationLink(pathname, href);
 
   // Render accordion
   const renderAccordion = () => (

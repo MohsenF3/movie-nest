@@ -13,9 +13,8 @@ import { usePathname } from "next/navigation";
 import React from "react";
 import SubMenu from "./sub-menu";
 
-interface MenuItemProps {
+interface MenuItemProps extends React.PropsWithChildren {
   menu: NavigationMenuDataType;
-  children: React.ReactNode;
 }
 
 export default function MenuItem({ menu, children }: MenuItemProps) {

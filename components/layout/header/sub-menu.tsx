@@ -1,21 +1,22 @@
 "use client";
 
 import { NavigationMenuLink } from "@/components/ui/navigation-menu";
-import { useActiveNavigation } from "@/hooks/use-active-navigation";
-import { cn } from "@/lib/utils";
+import { activeNavigationLink, cn } from "@/lib/utils";
 import { NavigationMenuDataType } from "@/types/placeholder";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 interface SubMenuProps {
   items: NavigationMenuDataType["items"];
 }
 
 export default function SubMenu({ items }: SubMenuProps) {
+  const pathname = usePathname();
+
   return (
     <ul className="grid w-2/3 gap-3 lg:grid-cols-2">
       {items?.map(({ href, icon: SubIcon, label, description }) => {
-        const isActive = useActiveNavigation(href);
-
+        const isActive = activeNavigationLink(pathname, href);
         return (
           <li key={label}>
             <NavigationMenuLink asChild>

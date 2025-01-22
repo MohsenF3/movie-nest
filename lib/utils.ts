@@ -67,3 +67,10 @@ export const generatePagination = (currentPage: number, totalPages: number) => {
     totalPages,
   ];
 };
+
+export const activeNavigationLink = (pathname: string, href: string) => {
+  if (pathname === href) {
+    return true;
+  }
+  return pathname.startsWith(href) && pathname[href.length] !== "/";
+};

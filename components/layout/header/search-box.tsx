@@ -5,9 +5,10 @@ import { cn } from "@/lib/utils";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useDebouncedCallback } from "use-debounce";
 
-interface SearchBoxProps extends React.ComponentProps<"input"> {}
-
-export default function SearchBox({ className, ...props }: SearchBoxProps) {
+export default function SearchBox({
+  className,
+  ...props
+}: React.ComponentProps<"input">) {
   const searchParams = useSearchParams();
   const { replace } = useRouter();
 

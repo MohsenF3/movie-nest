@@ -16,7 +16,9 @@ export default function Navigation({ children }: NavigationProps) {
     <NavigationMenu>
       <NavigationMenuList>
         {NAVIGATION_MENU_DATA.map((menu) => (
-          <MenuItem key={menu.label} menu={menu} children={children} />
+          <MenuItem key={menu.label} menu={menu}>
+            {children}
+          </MenuItem>
         ))}
       </NavigationMenuList>
     </NavigationMenu>
