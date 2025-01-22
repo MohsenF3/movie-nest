@@ -34,9 +34,9 @@ export default function HeroCarousel({
   useAutoplay(autoplay, handleNext, 5000);
 
   return (
-    <div className="pb-10 max-lg:overflow-hidden md:py-20">
+    <div className="pb-10 max-lg:overflow-hidden md:pb-20 md:pt-10">
       <div className="relative grid grid-cols-1 gap-10 md:grid-cols-2">
-        <div className="relative h-[60vh] w-full max-w-xl md:h-[70vh]">
+        <div className="relative h-[60vh] w-full max-w-xl md:h-[75vh]">
           <PosterImages
             movies={movies}
             active={active}

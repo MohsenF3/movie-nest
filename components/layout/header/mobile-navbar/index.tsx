@@ -12,7 +12,7 @@ import {
 
 import Logo from "@/components/logo";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
-import Link from "next/link";
+import MobileNavigationItems from "./mobile-navigation-Items";
 
 export default function MobileNavbar() {
   const { isSidebarOpen, setValue } = useSidebar();
@@ -39,14 +39,7 @@ export default function MobileNavbar() {
           <Logo className="mx-4" />
         </SheetClose>
 
-        <SheetClose asChild>
-          <Link
-            href="/movies"
-            className="block cursor-pointer rounded-lg px-4 py-3 hover:bg-secondary"
-          >
-            Movies
-          </Link>
-        </SheetClose>
+        <MobileNavigationItems />
       </SheetContent>
     </Sheet>
   );

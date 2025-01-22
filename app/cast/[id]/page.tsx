@@ -63,7 +63,7 @@ export default async function CastPage({ params }: CastPageProps) {
         <CustomImage
           src={imagePath}
           alt={cast.name}
-          containerClassName="z-10 w-full md:w-80 h-[400px] md:h-[500px] rounded-lg"
+          containerClassName="z-10 w-full md:w-80 h-[400px] md:h-[500px] rounded-lg border"
           fallbackPath="/avatar.webp"
           sizes="(max-width: 768px) 100vw, 50vw"
         />

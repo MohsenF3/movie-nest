@@ -13,15 +13,12 @@ export default function Logo({
       href={"/"}
       className={buttonVariants({
         variant: "linkHover",
-        className: cn(
-          "group flex flex-1 items-center gap-3 !p-0 sm:grow-0",
-          className
-        ),
+        className: cn("group flex items-center gap-3 !p-0", className),
       })}
       {...props}
     >
-      <MonitorPlay className="scale-150 text-primary" />
-      <h5 className="font-extrabold transition-colors duration-200 group-hover:text-primary">
+      <MonitorPlay className="scale-150 text-primary transition-transform duration-300 group-hover:-rotate-12" />
+      <h5 className="font-extrabold transition-colors duration-300 group-hover:text-primary">
         MovieNest
       </h5>
     </Link>

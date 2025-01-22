@@ -1,5 +1,8 @@
+import { NavigationMenuDataType } from "@/types/placeholder";
 import {
   Book,
+  Calendar,
+  Clapperboard,
   Crosshair,
   Eye,
   Ghost,
@@ -8,16 +11,70 @@ import {
   Layers,
   Map,
   Music,
+  Play,
   Popcorn,
   Rocket,
   Search,
   ShieldAlert,
   Smile,
   Sparkles,
+  Star,
   Sword,
   Target,
   Users,
 } from "lucide-react";
+
+export const VALID_LIST_TYPES = [
+  "now_playing",
+  "top_rated",
+  "popular",
+  "upcoming",
+] as const;
+
+export const NAVIGATION_MENU_DATA: NavigationMenuDataType[] = [
+  {
+    label: "Movies",
+    href: "/movies",
+    icon: Clapperboard,
+    items: [
+      {
+        label: "All Movies",
+        description:
+          "Explore a vast collection of movies, from classics to the latest releases.",
+        href: "/movies",
+        icon: Clapperboard,
+      },
+      {
+        label: "Now Playing",
+        description:
+          "Stay up-to-date with the movies shining on the big screens right now.",
+        href: "/movies/now_playing",
+        icon: Play,
+      },
+      {
+        label: "Top Rated",
+        description:
+          "Discover what have won over the hearts and minds of audiences and critics.",
+        href: "/movies/top_rated",
+        icon: Star,
+      },
+      {
+        label: "Popular",
+        description:
+          "See what's trending! These are the movies and shows everyone is watching and talking about.",
+        href: "/movies/popular",
+        icon: Heart,
+      },
+
+      {
+        label: "Upcoming",
+        description: "Stay tuned about the next big hits set to premiere soon.",
+        href: "/movies/upcoming",
+        icon: Calendar,
+      },
+    ],
+  },
+];
 
 const genres = [
   {
@@ -125,10 +182,3 @@ export const allGenres = genres.map((genre) => ({
   // Add href to each genre
   href: genre.id === 0 ? "/movies" : `/movies?genre=${genre.id}`,
 }));
-
-export const VALID_LIST_TYPES = [
-  "now_playing",
-  "top_rated",
-  "popular",
-  "upcoming",
-] as const;

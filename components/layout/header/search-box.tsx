@@ -1,10 +1,13 @@
 "use client";
 
 import { Input } from "@/components/ui/input";
+import { cn } from "@/lib/utils";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useDebouncedCallback } from "use-debounce";
 
-export default function SearchBox() {
+interface SearchBoxProps extends React.ComponentProps<"input"> {}
+
+export default function SearchBox({ className, ...props }: SearchBoxProps) {
   const searchParams = useSearchParams();
   const { replace } = useRouter();
 
@@ -26,6 +29,8 @@ export default function SearchBox() {
         handleSearch(e.target.value);
       }}
       defaultValue={searchParams.get("query")?.toString()}
+      className={cn("", className)}
+      {...props}
     />
   );
 }

@@ -19,7 +19,7 @@ export default function FantasyTitle({
     <>
       <div className="absolute left-0 top-0 h-8 w-1 rounded bg-primary lg:h-10" />
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h2 className="pl-3">{title}</h2>
+        <h2 className="pl-3 capitalize">{title}</h2>
 
         <Link
           href={href}
