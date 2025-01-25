@@ -1,13 +1,16 @@
 import Error from "@/components/error";
 import InfiniteScrollMovies from "@/components/movies/infinite-scroll-movies";
+import { buildFilters } from "@/helpers/inde";
 import { getAllMovies } from "@/lib/data";
+import { MovieSearchParams } from "@/types/movie/filters";
 import dynamic from "next/dynamic";
 
-const GenreSelect = dynamic(() => import("@/components/movies/genre-select"), {
-  ssr: false,
-});
-
-type SearchParams = { [key: string]: string | string[] | undefined };
+const MoviesListFilters = dynamic(
+  () => import("@/components/movies/movies-list-filters"),
+  {
+    ssr: false,
+  },
+);
 
 export async function generateMetadata() {
   return {
@@ -15,19 +18,13 @@ export async function generateMetadata() {
   };
 }
 
-export default async function MoviesPage(props: {
-  searchParams: SearchParams;
-}) {
-  const searchParams = props.searchParams;
-  const search =
-    typeof searchParams.query === "string" ? searchParams.query : undefined;
-  const genreId =
-    typeof searchParams.genre === "string" ? searchParams.genre : undefined;
+interface MoviesPageProps {
+  searchParams: MovieSearchParams;
+}
 
-  const { movies, status, type, message } = await getAllMovies({
-    search,
-    genreId,
-  });
+export default async function MoviesPage({ searchParams }: MoviesPageProps) {
+  const filters = buildFilters(searchParams);
+  const { movies, status, type, message } = await getAllMovies(filters);
 
   // show message if request failed
   if (type === "error" && status === 500) {
@@ -44,19 +41,20 @@ export default async function MoviesPage(props: {
   }
 
   return (
-    <div className="min-h-[calc(100vh-11.5rem)]">
-      <GenreSelect className="mb-5 flex md:hidden" />
+    <div className="mb-5 min-h-[calc(100vh-11.5rem)]">
+      <div className="mb-5 flex flex-wrap items-center justify-between gap-5">
+        <div className="space-y-2">
+          <h2 className="capitalize md:mt-6">All Movies</h2>
+          <p className="tracking-wide text-muted-foreground">
+            Explore a wide selection of movies with personalized filters and
+            sorting options.
+          </p>
+        </div>
+        <MoviesListFilters />
+      </div>
 
-      <ul
-        key={search || "" + genreId + Date.now()}
-        role="list"
-        className="movie-grid-list"
-      >
-        <InfiniteScrollMovies
-          search={search}
-          genreId={genreId}
-          initialMovies={movies}
-        />
+      <ul key={Date.now()} role="list" className="movie-grid-list">
+        <InfiniteScrollMovies initialMovies={movies} filters={filters} />
       </ul>
     </div>
   );

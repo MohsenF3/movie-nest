@@ -1,6 +1,7 @@
 "use server";
 
 import { Cast, Movie, MovieListType } from "@/types/movie";
+import { MovieSearchParams } from "@/types/movie/filters";
 import { base_url, key } from "./consts";
 import { formatListType } from "./formatter";
 
@@ -105,21 +106,31 @@ export const getCastById = async (id: number) => {
   }
 };
 
-export const getAllMovies = async ({
-  page = 1,
-  search,
-  genreId = "",
-}: {
-  page?: number;
-  search?: string | undefined;
-  genreId?: string | undefined;
-}) => {
-  const endpoint = search
-    ? `${base_url}/search/movie?api_key=${key}&page=${page}&query=${search}&with_genres=${genreId}`
-    : `${base_url}/discover/movie?api_key=${key}&page=${page}&with_genres=${genreId}`;
+export const getAllMovies = async (filters: MovieSearchParams) => {
+  const endpoint = filters.query
+    ? `${base_url}/search/movie?api_key=${key}`
+    : `${base_url}/discover/movie?api_key=${key}`;
+
+  const queryParams = new URLSearchParams();
+
+  // Append filters to the query parameters
+  for (const [key, value] of Object.entries(filters)) {
+    if (value !== undefined && value !== null && value !== "") {
+      if (Array.isArray(value)) {
+        // Handle array values (e.g., `with_genres`)
+        queryParams.append(key, value.join(","));
+      } else {
+        // Handle single values
+        queryParams.append(key, value.toString());
+      }
+    }
+  }
+
+  // Construct the final URL with query parameters
+  const url = `${endpoint}&${queryParams.toString()}`;
 
   try {
-    const response = await fetch(endpoint);
+    const response = await fetch(url);
     const data = await response.json();
     const movies: Movie[] = data.results;
 

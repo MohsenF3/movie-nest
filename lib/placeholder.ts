@@ -76,7 +76,7 @@ export const NAVIGATION_MENU_DATA: NavigationMenuDataType[] = [
   },
 ];
 
-const genres = [
+export const genres = [
   {
     id: 0,
     title: "All",
@@ -180,5 +180,141 @@ const genres = [
 export const allGenres = genres.map((genre) => ({
   ...genre,
   // Add href to each genre
-  href: genre.id === 0 ? "/movies" : `/movies?genre=${genre.id}`,
+  href: genre.id === 0 ? "/movies" : `/movies?with_genres=${genre.id}`,
 }));
+
+export const languages = [
+  {
+    iso_639_1: "en",
+    english_name: "English",
+  },
+  {
+    iso_639_1: "fa",
+    english_name: "Persian",
+  },
+  {
+    iso_639_1: "es",
+    english_name: "Spanish",
+  },
+  {
+    iso_639_1: "fr",
+    english_name: "French",
+  },
+  {
+    iso_639_1: "de",
+    english_name: "German",
+  },
+  {
+    iso_639_1: "zh",
+    english_name: "Mandarin",
+  },
+  {
+    iso_639_1: "ar",
+    english_name: "Arabic",
+  },
+  {
+    iso_639_1: "ru",
+    english_name: "Russian",
+  },
+  {
+    iso_639_1: "hi",
+    english_name: "Hindi",
+  },
+  {
+    iso_639_1: "bn",
+    english_name: "Bengali",
+  },
+  {
+    iso_639_1: "pt",
+    english_name: "Portuguese",
+  },
+  {
+    iso_639_1: "ja",
+    english_name: "Japanese",
+  },
+  {
+    iso_639_1: "it",
+    english_name: "Italian",
+  },
+  {
+    iso_639_1: "ko",
+    english_name: "Korean",
+  },
+  {
+    iso_639_1: "tr",
+    english_name: "Turkish",
+  },
+  {
+    iso_639_1: "ur",
+    english_name: "Urdu",
+  },
+  {
+    iso_639_1: "ta",
+    english_name: "Tamil",
+  },
+  {
+    iso_639_1: "sw",
+    english_name: "Swahili",
+  },
+  {
+    iso_639_1: "vi",
+    english_name: "Vietnamese",
+  },
+  {
+    iso_639_1: "el",
+    english_name: "Greek",
+  },
+  {
+    iso_639_1: "nl",
+    english_name: "Dutch",
+  },
+  {
+    iso_639_1: "pl",
+    english_name: "Polish",
+  },
+  {
+    iso_639_1: "th",
+    english_name: "Thai",
+  },
+  {
+    iso_639_1: "uk",
+    english_name: "Ukrainian",
+  },
+  {
+    iso_639_1: "he",
+    english_name: "Hebrew",
+  },
+  {
+    iso_639_1: "ms",
+    english_name: "Malay",
+  },
+  {
+    iso_639_1: "sv",
+    english_name: "Swedish",
+  },
+  {
+    iso_639_1: "no",
+    english_name: "Norwegian",
+  },
+  {
+    iso_639_1: "ro",
+    english_name: "Romanian",
+  },
+  {
+    iso_639_1: "sq",
+    english_name: "Albanian",
+  },
+];
+
+export const sortOptions = [
+  { value: "popularity.desc", label: "Popularity (High to Low)" },
+  { value: "popularity.asc", label: "Popularity (Low to High)" },
+  { value: "revenue.desc", label: "Revenue (High to Low)" },
+  { value: "revenue.asc", label: "Revenue (Low to High)" },
+  { value: "primary_release_date.desc", label: "Release Date (Newest First)" },
+  { value: "primary_release_date.asc", label: "Release Date (Oldest First)" },
+  { value: "vote_average.desc", label: "Average Vote (High to Low)" },
+  { value: "vote_average.asc", label: "Average Vote (Low to High)" },
+  { value: "vote_count.desc", label: "Vote Count (High to Low)" },
+  { value: "vote_count.asc", label: "Vote Count (Low to High)" },
+];

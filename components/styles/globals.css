@@ -108,6 +108,6 @@
   }
 
   p {
-    @apply text-base font-normal leading-relaxed lg:text-xl;
+    @apply text-base font-normal leading-relaxed lg:text-lg;
   }
 }

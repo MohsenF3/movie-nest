@@ -3,19 +3,18 @@
 import { useInfiniteScroll } from "@/hooks/use-infinite-scroll";
 import { getAllMovies } from "@/lib/data";
 import { Movie } from "@/types/movie";
+import { MovieSearchParams } from "@/types/movie/filters";
 import Loader from "../loader";
 import MovieCard from "../movie-card";
 
 interface InfiniteScrollMoviesProps {
-  search?: string;
-  genreId?: string;
+  filters: MovieSearchParams;
   initialMovies?: Movie[];
 }
 
 export default function InfiniteScrollMovies({
-  search,
-  genreId,
   initialMovies = [],
+  filters,
 }: InfiniteScrollMoviesProps) {
   const {
     data: movies,
@@ -24,7 +23,10 @@ export default function InfiniteScrollMovies({
   } = useInfiniteScroll<Movie>({
     initialData: initialMovies,
     fetchData: async (page) => {
-      const response = await getAllMovies({ search, genreId, page });
+      const response = await getAllMovies({
+        page,
+        ...filters,
+      });
       return response.movies || [];
     },
   });

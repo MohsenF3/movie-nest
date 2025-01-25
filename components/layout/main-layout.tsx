@@ -14,11 +14,11 @@ export default function MainLayout({
   children: React.ReactNode;
 }) {
   return (
-    <>
+    <div vaul-drawer-wrapper="" className="bg-background">
       <Header />
       <main className="container">{children}</main>
       <Footer />
       <MobileNavbar />
-    </>
+    </div>
   );
 }
