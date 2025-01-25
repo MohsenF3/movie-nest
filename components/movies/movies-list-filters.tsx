@@ -3,8 +3,6 @@
 import { Button } from "@/components/ui/button";
 import {
   ResponsiveSheet,
-  ResponsiveSheetBody,
-  ResponsiveSheetClose,
   ResponsiveSheetContent,
   ResponsiveSheetDescription,
   ResponsiveSheetFooter,
@@ -17,8 +15,10 @@ import { SlidersHorizontal } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React from "react";
 import { FormProvider, useForm } from "react-hook-form";
+import { ScrollArea } from "../ui/scroll-area";
 import FilterTabs from "./filter-tabs";
 import { MoviesListFiltersFormValues } from "./schema";
+
 export default function MoviesListFilters() {
   const [open, setOpen] = React.useState(false);
 
@@ -55,32 +55,34 @@ export default function MoviesListFilters() {
             </Button>
           </ResponsiveSheetTrigger>
 
-          <ResponsiveSheetContent className="space-y-4 p-4">
-            <ResponsiveSheetHeader>
+          <ResponsiveSheetContent className="min-h-[95%] space-y-4 px-4">
+            <ResponsiveSheetHeader className="p-0">
               <ResponsiveSheetTitle>Filters</ResponsiveSheetTitle>
               <ResponsiveSheetDescription>
                 Filter movies by genre, release date, and more.
               </ResponsiveSheetDescription>
             </ResponsiveSheetHeader>
 
-            <FilterTabs />
+            <ScrollArea className="h-full overflow-y-auto">
+              <FilterTabs />
 
-            <ResponsiveSheetFooter>
-              <Button
-                type="button"
-                variant="outline"
-                onClick={() => {
-                  methods.reset();
-                  setOpen(false);
-                }}
-              >
-                Close
-              </Button>
+              <ResponsiveSheetFooter className="px-0">
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={() => {
+                    methods.reset();
+                    setOpen(false);
+                  }}
+                >
+                  Close
+                </Button>
 
-              <Button type="submit" onClick={methods.handleSubmit(onSubmit)}>
-                Save changes
-              </Button>
-            </ResponsiveSheetFooter>
+                <Button type="submit" onClick={methods.handleSubmit(onSubmit)}>
+                  Save changes
+                </Button>
+              </ResponsiveSheetFooter>
+            </ScrollArea>
           </ResponsiveSheetContent>
         </ResponsiveSheet>
       </form>

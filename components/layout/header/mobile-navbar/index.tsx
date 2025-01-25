@@ -3,12 +3,12 @@
 import { useSidebar } from "@/providers/sidebar-provider";
 
 import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetDescription,
-  SheetTitle,
-} from "@/components/ui/sheet";
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerTitle,
+} from "@/components/ui/drawer";
 
 import Logo from "@/components/logo";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
@@ -18,29 +18,26 @@ export default function MobileNavbar() {
   const { isSidebarOpen, setValue } = useSidebar();
 
   return (
-    <Sheet
+    <Drawer
       defaultOpen={isSidebarOpen}
       onOpenChange={setValue}
       open={isSidebarOpen}
     >
-      <SheetContent
-        className="block space-y-2 overflow-y-auto p-0 md:hidden"
-        side="left"
-      >
+      <DrawerContent className="block min-h-[70%] space-y-2 overflow-y-auto p-0 md:hidden">
         <VisuallyHidden asChild>
-          <SheetTitle>Navbar links</SheetTitle>
+          <DrawerTitle>Navbar links</DrawerTitle>
         </VisuallyHidden>
 
         <VisuallyHidden asChild>
-          <SheetDescription>This is navbar links</SheetDescription>
+          <DrawerDescription>This is navbar links</DrawerDescription>
         </VisuallyHidden>
 
-        <SheetClose asChild>
+        <DrawerClose asChild>
           <Logo className="mx-4" />
-        </SheetClose>
+        </DrawerClose>
 
         <MobileNavigationItems />
-      </SheetContent>
-    </Sheet>
+      </DrawerContent>
+    </Drawer>
   );
 }

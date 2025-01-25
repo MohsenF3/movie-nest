@@ -5,9 +5,13 @@ import Sort from "./sort";
 export default function FilterTabs() {
   return (
     <Tabs defaultValue="filters">
-      <TabsList>
-        <TabsTrigger value="filters">Filters</TabsTrigger>
-        <TabsTrigger value="sort-by">Sort</TabsTrigger>
+      <TabsList className="w-full">
+        <TabsTrigger className="flex-1" value="filters">
+          Filters
+        </TabsTrigger>
+        <TabsTrigger className="flex-1" value="sort-by">
+          Sort
+        </TabsTrigger>
       </TabsList>
 
       <TabsContent value="filters">
