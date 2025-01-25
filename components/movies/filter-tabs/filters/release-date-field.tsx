@@ -71,7 +71,6 @@ export const ReleaseDateField = () => {
                     captionLayout="dropdown"
                     toYear={endDate ? endDate.getFullYear() : 2030}
                     disabled={endDate && { after: new Date(endDate) }}
-                    initialFocus
                   />
                 </PopoverContent>
               </Popover>
@@ -128,7 +127,6 @@ export const ReleaseDateField = () => {
                         before: new Date(startDate),
                       }
                     }
-                    initialFocus
                   />
                 </PopoverContent>
               </Popover>
