@@ -1,50 +1,12 @@
 import { MoviesListFiltersFormValues } from "@/components/movies/schema";
 import { format } from "date-fns";
-import { ReadonlyURLSearchParams } from "next/navigation";
 
-export const getDefaultValues = (searchParams: ReadonlyURLSearchParams) => {
-  const parseList = (param: string): number[] | undefined => {
-    const value = searchParams.get(param);
-    return value ? value.split("|").map(Number) : undefined;
-  };
-
-  const getDate = (param: string): Date | undefined => {
-    const value = searchParams.get(param);
-    return value ? new Date(value) : undefined;
-  };
-
-  const getNumberOrDefault = (param: string, defaultValue: number): number => {
-    const value = searchParams.get(param);
-    return value ? Number(value) : defaultValue;
-  };
-
-  const getString = (param: string): string | undefined => {
-    const value = searchParams.get(param);
-    return value || undefined;
-  };
-
-  return {
-    genres: parseList("genres"),
-    with_original_language: getString("with_original_language"),
-    release_date: {
-      gte: getDate("release_date.gte"),
-      lte: getDate("release_date.lte"),
-    },
-    sort_by: getString("sort_by"),
-    vote_average: {
-      gte: getNumberOrDefault("vote_average.gte", 0),
-      lte: getNumberOrDefault("vote_average.lte", 10),
-    },
-    vote_count: {
-      gte: getNumberOrDefault("vote_count.gte", 0),
-    },
-  };
-};
-
+// Formats a Date object into a string with the format "yyyy-MM-dd"
 export const formatDateToURL = (rawDate: Date) => {
   return format(rawDate, "yyyy-MM-dd");
 };
 
+// Encodes key-value pairs for a query string, supporting both strings and dates
 export const formatValueForQueryString = (
   key: string,
   value: Date | string,
@@ -66,9 +28,11 @@ export const buildQueryStringFromValues = (
   Object.entries(values).forEach(([key, value]) => {
     if (typeof value === "object" && value !== null) {
       if (Array.isArray(value)) {
+        // Handle arrays by joining them with a pipe separator
         if (value.length > 0) return parts.push(`${key}=${value.join("|")}`);
       }
 
+      // Handle nested objects by recursively formatting each key-value pair
       Object.entries(value).forEach(([subKey, subValue]) => {
         if (subValue) {
           parts.push(formatValueForQueryString(`${key}.${subKey}`, subValue));
@@ -78,10 +42,12 @@ export const buildQueryStringFromValues = (
       return;
     }
 
+    // Handle simple key-value pairs
     if (value) {
       parts.push(formatValueForQueryString(key, value));
     }
   });
 
+  // Join all query string parts into a single string
   return parts.join("&");
 };

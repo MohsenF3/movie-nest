@@ -4,7 +4,7 @@ import Sort from "./sort";
 
 export default function FilterTabs() {
   return (
-    <Tabs defaultValue="filters">
+    <Tabs defaultValue="filters" className="my-5 p-1">
       <TabsList className="w-full">
         <TabsTrigger className="flex-1" value="filters">
           Filters

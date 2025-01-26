@@ -6,7 +6,7 @@ import { VoteCountField } from "./vote-count-field";
 
 export default function Filters() {
   return (
-    <div className="relative my-5 space-y-4">
+    <div className="relative space-y-4">
       <GenresField />
       <ReleaseDateField />
       <LanguageField />

@@ -11,13 +11,14 @@ import {
   ResponsiveSheetTrigger,
 } from "@/components/ui/responsive-sheet";
 import { buildQueryStringFromValues, getDefaultValues } from "@/helpers/movies";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { SlidersHorizontal } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { ScrollArea } from "../ui/scroll-area";
 import FilterTabs from "./filter-tabs";
-import { MoviesListFiltersFormValues } from "./schema";
+import { MoviesListFiltersFormValues, moviesListFiltersSchema } from "./schema";
 
 export default function MoviesListFilters() {
   const [open, setOpen] = React.useState(false);
@@ -32,6 +33,7 @@ export default function MoviesListFilters() {
 
   const methods = useForm<MoviesListFiltersFormValues>({
     defaultValues,
+    resolver: zodResolver(moviesListFiltersSchema),
   });
 
   const onSubmit = (data: MoviesListFiltersFormValues) => {

@@ -31,14 +31,15 @@ export default async function MoviesPage({ searchParams }: MoviesPageProps) {
     return <Error message={message} />;
   }
 
-  // show message if no movies found
-  if (!movies?.length) {
-    return (
-      <div className="flex min-h-[calc(100vh-11.5rem)] items-center justify-center">
-        <p>No movies found.</p>
-      </div>
-    );
-  }
+  const renderMovies = movies?.length ? (
+    <ul key={Date.now()} role="list" className="movie-grid-list">
+      <InfiniteScrollMovies initialMovies={movies} filters={filters} />
+    </ul>
+  ) : (
+    <div className="flex min-h-[50vh] items-center justify-center">
+      <p>No movies found.</p>
+    </div>
+  );
 
   return (
     <div className="mb-5 min-h-[calc(100vh-11.5rem)]">
@@ -53,9 +54,7 @@ export default async function MoviesPage({ searchParams }: MoviesPageProps) {
         <MoviesListFilters />
       </div>
 
-      <ul key={Date.now()} role="list" className="movie-grid-list">
-        <InfiniteScrollMovies initialMovies={movies} filters={filters} />
-      </ul>
+      {renderMovies}
     </div>
   );
 }

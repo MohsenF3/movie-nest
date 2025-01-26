@@ -5,7 +5,7 @@ export const moviesListFiltersSchema = z.object({
     gte: z.date().optional(),
     lte: z.date().optional(),
   }),
-  with_genres: z.array(z.number()),
+  with_genres: z.array(z.number()).optional(),
   with_original_language: z.string().optional(),
   sort_by: z.string().optional(),
 
