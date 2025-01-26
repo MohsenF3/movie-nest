@@ -8,6 +8,7 @@ import {
   Ghost,
   Heart,
   Hourglass,
+  JapaneseYen,
   Layers,
   Map,
   Music,
@@ -73,6 +74,11 @@ export const NAVIGATION_MENU_DATA: NavigationMenuDataType[] = [
         icon: Calendar,
       },
     ],
+  },
+  {
+    label: "Animations",
+    href: "/animations",
+    icon: JapaneseYen,
   },
 ];
 

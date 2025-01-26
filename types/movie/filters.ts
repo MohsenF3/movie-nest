@@ -22,4 +22,6 @@ export type MovieSearchParams = {
 
   // Pagination
   page?: number;
+
+  with_keywords?: string;
 };
