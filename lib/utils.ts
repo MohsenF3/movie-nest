@@ -74,3 +74,26 @@ export const activeNavigationLink = (pathname: string, href: string) => {
   }
   return pathname.startsWith(href) && pathname[href.length] !== "/";
 };
+
+export const detectIranianUser = () => {
+  const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  const locales = navigator.languages || [navigator.language];
+  const currency = new Intl.NumberFormat("fa-IR", {
+    style: "currency",
+    currency: "IRR",
+  }).resolvedOptions().currency;
+  const calendar = new Intl.DateTimeFormat("fa-IR", {
+    calendar: "persian",
+  }).resolvedOptions().calendar;
+
+  if (
+    timeZone === "Asia/Tehran" ||
+    locales.some((locale) => locale.includes("IR") || locale.includes("fa")) ||
+    currency === "IRR" ||
+    calendar === "persian"
+  ) {
+    return true;
+  }
+
+  return false;
+};
