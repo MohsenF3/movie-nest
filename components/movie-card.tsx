@@ -4,7 +4,11 @@ import Link from "next/link";
 import CircleProgress from "./ui/circle-progressbar";
 import { DirectionAwareHover } from "./ui/direction-aware-hover";
 
-export default function MovieCard(movie: Movie) {
+interface MovieCardProps extends Movie {
+  priority?: boolean;
+}
+
+export default function MovieCard({ priority, ...movie }: MovieCardProps) {
   return (
     <Link
       href={`/movie/${movie.id}`}
@@ -12,6 +16,7 @@ export default function MovieCard(movie: Movie) {
     >
       <DirectionAwareHover
         image={{ url: movie.poster_path!, alt: movie.title }}
+        priority={priority}
       >
         <div className="h-full w-full space-y-2">
           <CircleProgress rate={movie.vote_average} />

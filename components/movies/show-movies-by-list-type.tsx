@@ -24,10 +24,10 @@ export default async function ShowMoviesByListType({
 
   return (
     <ul className="movie-grid-list">
-      {movies?.map((movie) => {
+      {movies?.map((movie, index) => {
         return (
           <li key={uuid()} className="relative">
-            <MovieCard {...movie} />
+            <MovieCard {...movie} priority={index < 4} />
           </li>
         );
       })}

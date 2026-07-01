@@ -14,6 +14,7 @@ interface DirectionAwareHoverProps {
   children: React.ReactNode | string;
   childrenClassName?: string;
   className?: string;
+  priority?: boolean;
 }
 
 export const DirectionAwareHover = ({
@@ -21,6 +22,7 @@ export const DirectionAwareHover = ({
   image,
   childrenClassName,
   className,
+  priority,
 }: DirectionAwareHoverProps) => {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -96,6 +98,7 @@ export const DirectionAwareHover = ({
               src={image.url}
               fallbackPath="/no-poster.webp"
               sizes="(max-width: 300px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+              priority={priority}
             />
           </motion.div>
           <motion.div

@@ -35,7 +35,7 @@ export default function InfiniteScrollMovies({
     <>
       {movies.map((movie, index) => (
         <li key={movie.id + index} className="relative">
-          <MovieCard {...movie} />
+          <MovieCard {...movie} priority={index < 4} />
         </li>
       ))}
       {hasMore && <Loader loaderRef={ref} />}
