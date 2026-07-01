@@ -14,12 +14,12 @@ export function useIranDetection() {
 
     if (geoCookie) {
       const country = geoCookie.split("=")[1].trim();
-      if (country === "IR") {
-        setIsFromIran(true);
-        return;
-      }
+      // Trust Vercel's geolocation data - only show for Iran
+      setIsFromIran(country === "IR");
+      return;
     }
 
+    // Fallback to detection only if no geolocation cookie exists
     if (detectIranianUser()) {
       setIsFromIran(true);
     }
