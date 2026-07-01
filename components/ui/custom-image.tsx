@@ -1,14 +1,32 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import Image, { ImageProps } from "next/image";
+import Image, { ImageProps, ImageLoaderProps } from "next/image";
 import React from "react";
 
-const TMDB_IMAGE_ORIGIN = "https://image.tmdb.org/t/p/w1280";
+const TMDB_IMAGE_BASE = "https://image.tmdb.org/t/p";
+
+const POSTER_WIDTHS = [92, 154, 185, 342, 500, 780];
+const PROFILE_WIDTHS = [45, 185];
+
+function tmdbLoader(type: "poster" | "profile") {
+  return function loader({ src, width }: ImageLoaderProps) {
+    if (type === "profile") {
+      const bucket = PROFILE_WIDTHS.find((w) => w >= width);
+      const size = bucket ? `w${bucket}` : width <= 632 ? "h632" : "original";
+      return `${TMDB_IMAGE_BASE}/${size}${src}`;
+    }
+
+    const bucket = POSTER_WIDTHS.find((w) => w >= width);
+    const size = bucket ? `w${bucket}` : "original";
+    return `${TMDB_IMAGE_BASE}/${size}${src}`;
+  };
+}
 
 interface CustomImageProps extends ImageProps {
   fallbackPath: string;
   containerClassName?: string;
+  type?: "poster" | "profile";
 }
 
 const shimmer = (w: number, h: number) => `
@@ -36,6 +54,7 @@ export default function CustomImage({
   className,
   containerClassName,
   fallbackPath,
+  type = "poster",
   src,
   alt = "",
   ...props
@@ -54,7 +73,8 @@ export default function CustomImage({
         />
       ) : (
         <Image
-          src={`${TMDB_IMAGE_ORIGIN}${src}`}
+          loader={tmdbLoader(type)}
+          src={src ?? ""}
           alt={alt}
           fill
           placeholder="blur"

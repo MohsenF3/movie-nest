@@ -46,6 +46,7 @@ function CastCard({ id, name, profile_path, character }: CastCardProps) {
       <CustomImage
         src={profile_path || "/avatar.webp"}
         alt={name}
+        type="profile"
         containerClassName="w-full h-[250px] md:h-[400px] rounded-lg"
         className="saturate-100 transition-all duration-300 hover:object-top group-hover:saturate-100 md:saturate-0"
         fallbackPath="/avatar.webp"
