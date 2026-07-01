@@ -11,14 +11,9 @@ import {
   ResponsiveDialogTitle,
   ResponsiveDialogTrigger,
 } from "@/components/ui/responsive-dialog";
-import { useIranDetection } from "@/hooks/use-iran-detection";
 import { Button } from "./ui/button";
 
 export default function IranAccessNotice() {
-  const isFromIran = useIranDetection();
-
-  if (!isFromIran) return null;
-
   return (
     <ResponsiveDialog defaultOpen>
       <ResponsiveDialogTrigger className="hidden"></ResponsiveDialogTrigger>
